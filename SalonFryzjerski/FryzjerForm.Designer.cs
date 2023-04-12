@@ -44,73 +44,84 @@
             // fryzjerDataGridView
             // 
             this.fryzjerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.fryzjerDataGridView.Location = new System.Drawing.Point(34, 28);
+            this.fryzjerDataGridView.Location = new System.Drawing.Point(30, 21);
+            this.fryzjerDataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fryzjerDataGridView.Name = "fryzjerDataGridView";
             this.fryzjerDataGridView.RowHeadersWidth = 51;
             this.fryzjerDataGridView.RowTemplate.Height = 29;
-            this.fryzjerDataGridView.Size = new System.Drawing.Size(511, 281);
+            this.fryzjerDataGridView.Size = new System.Drawing.Size(447, 211);
             this.fryzjerDataGridView.TabIndex = 0;
+            this.fryzjerDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.fryzjerDataGridView_CellContentClick);
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(653, 263);
+            this.addButton.Location = new System.Drawing.Point(571, 197);
+            this.addButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(94, 29);
+            this.addButton.Size = new System.Drawing.Size(82, 22);
             this.addButton.TabIndex = 1;
             this.addButton.Text = "Dodaj";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click_1);
             // 
             // editButton
             // 
-            this.editButton.Location = new System.Drawing.Point(790, 263);
+            this.editButton.Location = new System.Drawing.Point(691, 197);
+            this.editButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(94, 29);
+            this.editButton.Size = new System.Drawing.Size(82, 22);
             this.editButton.TabIndex = 2;
             this.editButton.Text = "Edytuj";
             this.editButton.UseVisualStyleBackColor = true;
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(451, 353);
+            this.deleteButton.Location = new System.Drawing.Point(395, 265);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(94, 29);
+            this.deleteButton.Size = new System.Drawing.Size(82, 22);
             this.deleteButton.TabIndex = 3;
             this.deleteButton.Text = "Usun";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click_1);
             // 
             // imieTextBox
             // 
-            this.imieTextBox.Location = new System.Drawing.Point(759, 28);
+            this.imieTextBox.Location = new System.Drawing.Point(664, 21);
+            this.imieTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.imieTextBox.Name = "imieTextBox";
-            this.imieTextBox.Size = new System.Drawing.Size(125, 27);
+            this.imieTextBox.Size = new System.Drawing.Size(110, 23);
             this.imieTextBox.TabIndex = 4;
             // 
             // nazwiskoTextBox
             // 
-            this.nazwiskoTextBox.Location = new System.Drawing.Point(759, 87);
+            this.nazwiskoTextBox.Location = new System.Drawing.Point(664, 65);
+            this.nazwiskoTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nazwiskoTextBox.Name = "nazwiskoTextBox";
-            this.nazwiskoTextBox.Size = new System.Drawing.Size(125, 27);
+            this.nazwiskoTextBox.Size = new System.Drawing.Size(110, 23);
             this.nazwiskoTextBox.TabIndex = 5;
             // 
-            // stawkanNmericUpDown
+            // stawkaNumericUpDown
             // 
-            this.stawkaNumericUpDown.Location = new System.Drawing.Point(759, 138);
-            this.stawkaNumericUpDown.Name = "stawkanNmericUpDown";
-            this.stawkaNumericUpDown.Size = new System.Drawing.Size(125, 27);
+            this.stawkaNumericUpDown.Location = new System.Drawing.Point(664, 104);
+            this.stawkaNumericUpDown.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.stawkaNumericUpDown.Name = "stawkaNumericUpDown";
+            this.stawkaNumericUpDown.Size = new System.Drawing.Size(109, 23);
             this.stawkaNumericUpDown.TabIndex = 6;
             // 
             // iloscGodzinNumericUpDown
             // 
-            this.iloscGodzinNumericUpDown.Location = new System.Drawing.Point(759, 179);
+            this.iloscGodzinNumericUpDown.Location = new System.Drawing.Point(664, 134);
+            this.iloscGodzinNumericUpDown.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iloscGodzinNumericUpDown.Name = "iloscGodzinNumericUpDown";
-            this.iloscGodzinNumericUpDown.Size = new System.Drawing.Size(125, 27);
+            this.iloscGodzinNumericUpDown.Size = new System.Drawing.Size(109, 23);
             this.iloscGodzinNumericUpDown.TabIndex = 7;
             // 
             // FryzjerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(995, 450);
+            this.ClientSize = new System.Drawing.Size(871, 338);
             this.Controls.Add(this.iloscGodzinNumericUpDown);
             this.Controls.Add(this.stawkaNumericUpDown);
             this.Controls.Add(this.nazwiskoTextBox);
@@ -119,6 +130,7 @@
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.fryzjerDataGridView);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FryzjerForm";
             this.Text = "FryzjerForm";
             this.Load += new System.EventHandler(this.FryzjerForm_Load);
