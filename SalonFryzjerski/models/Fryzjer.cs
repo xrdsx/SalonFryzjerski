@@ -31,7 +31,7 @@ namespace SalonFryzjerski.models
             IloscGodzin = iloscGodzin;
         }
        
-
+        
         public void Create()
         {
             Fryzjer fryzjer = this;
@@ -62,6 +62,7 @@ namespace SalonFryzjerski.models
 
         public void Update()
         {
+            Fryzjer fryzjer = this;
             Connection con = new Connection();
             con.Connect();
 
@@ -71,11 +72,11 @@ namespace SalonFryzjerski.models
 
             using (SqlCommand command = new SqlCommand(query, con.connection))
             {
-                command.Parameters.AddWithValue("@Imie", Imie);
-                command.Parameters.AddWithValue("@Nazwisko", Nazwisko);
-                command.Parameters.AddWithValue("@Stawka", Stawka);
-                command.Parameters.AddWithValue("@IloscGodzin", IloscGodzin);
-                command.Parameters.AddWithValue("@idFryzjera", idFryzjera);
+                command.Parameters.AddWithValue("@Imie", fryzjer.Imie);
+                command.Parameters.AddWithValue("@Nazwisko", fryzjer.Nazwisko);
+                command.Parameters.AddWithValue("@Stawka", fryzjer.Stawka);
+                command.Parameters.AddWithValue("@IloscGodzin", fryzjer.IloscGodzin);
+                command.Parameters.AddWithValue("@idFryzjera", fryzjer.idFryzjera);
 
                 command.ExecuteNonQuery();
             }

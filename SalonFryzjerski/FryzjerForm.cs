@@ -38,26 +38,20 @@ namespace SalonFryzjerski
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            Fryzjer fryzjer = new Fryzjer();
-            fryzjer.Imie = imieTextBox.Text;
-            fryzjer.Nazwisko = nazwiskoTextBox.Text;
-            fryzjer.Stawka = Convert.ToDecimal(stawkaNumericUpDown.Value);
-            fryzjer.IloscGodzin = Convert.ToInt32(iloscGodzinNumericUpDown.Value);
-            fryzjer.Create();
-            InitializeComponent();
+            //Fryzjer fryzjer = new Fryzjer();
+            //fryzjer.Imie = imieTextBox.Text;
+            //fryzjer.Nazwisko = nazwiskoTextBox.Text;
+            //fryzjer.Stawka = Convert.ToDecimal(stawkaNumericUpDown.Value);
+            //fryzjer.IloscGodzin = Convert.ToInt32(iloscGodzinNumericUpDown.Value);
+            //fryzjer.Create();
+            //InitializeComponent();
             
 
         }
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            Fryzjer fryzjer = fryzjerDataGridView.SelectedRows[0].DataBoundItem as Fryzjer;
-            fryzjer.Imie = imieTextBox.Text;
-            fryzjer.Nazwisko = nazwiskoTextBox.Text;
-            fryzjer.Stawka = Convert.ToDecimal(stawkaNumericUpDown.Value);
-            fryzjer.IloscGodzin = Convert.ToInt32(iloscGodzinNumericUpDown.Value);
-            fryzjer.Update();
-            fryzjerDataGridView.Refresh();
+            
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -92,14 +86,28 @@ namespace SalonFryzjerski
             fryzjer.Stawka = Convert.ToDecimal(stawkaNumericUpDown.Value);
             fryzjer.IloscGodzin = Convert.ToInt32(iloscGodzinNumericUpDown.Value);
             fryzjer.Create();
-            LoadFryzjer();
+            fryzjerDataGridView.Refresh();
         }
 
         private void deleteButton_Click_1(object sender, EventArgs e)
         {
-            Fryzjer fryzjer = fryzjerDataGridView.SelectedRows[0].DataBoundItem as Fryzjer;
+
+            Fryzjer fryzjer = new Fryzjer();
+            fryzjer.idFryzjera = Convert.ToInt32(fryzjerDataGridView.SelectedRows[0].Cells[0].Value);
             fryzjer.Delete();
-            LoadFryzjer();
+            fryzjerDataGridView.Refresh();
+        }
+
+        private void editButton_Click_1(object sender, EventArgs e)
+        {
+            Fryzjer fryzjer = new Fryzjer();
+            fryzjer.idFryzjera = Convert.ToInt32(fryzjerDataGridView.CurrentRow.Cells["idFryzjera"].Value);
+            fryzjer.Imie = imieTextBox.Text;
+            fryzjer.Nazwisko = nazwiskoTextBox.Text;
+            fryzjer.Stawka = Convert.ToDecimal(stawkaNumericUpDown.Value);
+            fryzjer.IloscGodzin = Convert.ToInt32(iloscGodzinNumericUpDown.Value);
+            fryzjer.Update();
+            fryzjerDataGridView.Refresh();
         }
     }
 }

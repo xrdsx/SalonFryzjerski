@@ -73,6 +73,7 @@
             this.editButton.TabIndex = 2;
             this.editButton.Text = "Edytuj";
             this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click_1);
             // 
             // deleteButton
             // 
