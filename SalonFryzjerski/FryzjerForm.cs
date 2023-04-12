@@ -86,7 +86,7 @@ namespace SalonFryzjerski
             fryzjer.Stawka = Convert.ToDecimal(stawkaNumericUpDown.Value);
             fryzjer.IloscGodzin = Convert.ToInt32(iloscGodzinNumericUpDown.Value);
             fryzjer.Create();
-            fryzjerDataGridView.Refresh();
+            LoadFryzjer();
         }
 
         private void deleteButton_Click_1(object sender, EventArgs e)
@@ -95,7 +95,7 @@ namespace SalonFryzjerski
             Fryzjer fryzjer = new Fryzjer();
             fryzjer.idFryzjera = Convert.ToInt32(fryzjerDataGridView.SelectedRows[0].Cells[0].Value);
             fryzjer.Delete();
-            fryzjerDataGridView.Refresh();
+            LoadFryzjer();
         }
 
         private void editButton_Click_1(object sender, EventArgs e)
@@ -107,7 +107,7 @@ namespace SalonFryzjerski
             fryzjer.Stawka = Convert.ToDecimal(stawkaNumericUpDown.Value);
             fryzjer.IloscGodzin = Convert.ToInt32(iloscGodzinNumericUpDown.Value);
             fryzjer.Update();
-            fryzjerDataGridView.Refresh();
+            LoadFryzjer();
         }
     }
 }
