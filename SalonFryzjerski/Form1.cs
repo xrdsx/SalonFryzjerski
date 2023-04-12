@@ -27,5 +27,11 @@ namespace SalonFryzjerski
         {
 
         }
+
+        private void uslugiButton_Click(object sender, EventArgs e)
+        {
+            UslugiForm uslugiForm = new UslugiForm();
+            uslugiForm.ShowDialog();
+        }
     }
 }
