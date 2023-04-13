@@ -32,8 +32,12 @@ namespace SalonFryzjerski.models
             IloscGodzin = iloscGodzin;
            
         }
-       
-        
+        public string FullName
+        {
+            get { return Imie + " " + Nazwisko; }
+        }
+
+
         public void Create()
         {
             Fryzjer fryzjer = this;
@@ -158,8 +162,68 @@ namespace SalonFryzjerski.models
             return table;
         }
 
+        public decimal GetPodstawowaWyplata(int idFryzjera)
+        {
+            decimal podstawowaWyplata = 0;
+            Connection connection = new Connection();
+            connection.Connect();
+            string query = "SELECT PodstawowaWyplata FROM Fryzjer WHERE idFryzjera=@idFryzjera";
+            SqlCommand cmd = new SqlCommand(query, connection.connection);
+            cmd.Parameters.AddWithValue("@idFryzjera", idFryzjera);
 
-        
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                reader.Read();
+                podstawowaWyplata = Convert.ToDecimal(reader["PodstawowaWyplata"]);
+            }
+
+            reader.Close();
+            connection.connection.Close();
+
+            return podstawowaWyplata;
+        }
+
+        public int GetLiczbaZlecenWykonanych(int idFryzjera, DateTime dataOd, DateTime dataDo)
+        {
+            int liczbaZlecen = 0;
+            Connection connection = new Connection();
+            connection.Connect();
+            string query = "SELECT COUNT(*) FROM Zlecenia WHERE FryzjerFK=@idFryzjera AND Data >= @DataOd AND Data <= @DataDo";
+            SqlCommand cmd = new SqlCommand(query, connection.connection);
+            cmd.Parameters.AddWithValue("@idFryzjera", idFryzjera);
+            cmd.Parameters.AddWithValue("@DataOd", dataOd);
+            cmd.Parameters.AddWithValue("@DataDo", dataDo);
+
+            liczbaZlecen = (int)cmd.ExecuteScalar();
+
+            connection.connection.Close();
+
+            return liczbaZlecen;
+        }
+
+        public decimal ObliczBonus(decimal liczbaZlecen)
+        {
+            decimal bonus = 0;
+
+            if (liczbaZlecen > 50)
+            {
+                bonus = 300;
+            }
+            else if (liczbaZlecen > 40)
+            {
+                bonus = 150;
+            }
+            else if (liczbaZlecen > 20)
+            {
+                bonus = 100;
+            }
+
+            return bonus;
+        }
+
+
 
     }
 }

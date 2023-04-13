@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.logOutButton = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -97,7 +98,7 @@
             // 
             // logOutButton
             // 
-            this.logOutButton.Location = new System.Drawing.Point(185, 317);
+            this.logOutButton.Location = new System.Drawing.Point(276, 320);
             this.logOutButton.Name = "logOutButton";
             this.logOutButton.Size = new System.Drawing.Size(180, 92);
             this.logOutButton.TabIndex = 6;
@@ -105,11 +106,22 @@
             this.logOutButton.UseVisualStyleBackColor = true;
             this.logOutButton.Click += new System.EventHandler(this.logOutButton_Click);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(78, 320);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(180, 92);
+            this.button5.TabIndex = 7;
+            this.button5.Text = "GENERATOR RAPORTÓW";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // MainPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(578, 452);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.logOutButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -134,5 +146,6 @@
         private Label label1;
         private Label label2;
         private Button logOutButton;
+        private Button button5;
     }
 }

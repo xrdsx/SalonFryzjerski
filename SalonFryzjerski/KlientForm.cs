@@ -14,12 +14,12 @@ namespace SalonFryzjerski
 {
     public partial class KlientForm : Form
     {
-        public int LoggedUserId { get; set; }
+        
 
-        public KlientForm(int loggedUserId)
+        public KlientForm()
         {
             InitializeComponent();
-            LoggedUserId = loggedUserId;
+            
             
             
 
@@ -39,13 +39,24 @@ namespace SalonFryzjerski
             klient.Nazwisko = nazwiskoTextBox.Text;
             klient.NumerTelefonu = Convert.ToInt32(numerTelefonuNumericUpDown.Value);
             klient.OpisWlosow = opisTextBox.Text;
-            klient.Create(LoggedUserId);
-            
-            
-            
+            klient.Create();
 
-            
+            this.Close(); // zamknij bieżące okno
+
+            MainPanel mainPanel = new MainPanel();
+            mainPanel.Show(); // otwórz okno MainPanel
+
+
+
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close(); // zamknij bieżące okno
+
+            MainPanel mainPanel = new MainPanel();
+            mainPanel.Show(); // otwórz okno MainPanel
+
+        }
     }
 }

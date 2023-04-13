@@ -58,7 +58,7 @@ namespace SalonFryzjerski
 
         private void button2_Click(object sender, EventArgs e)
         {
-            KlientForm klientForm = new KlientForm(LoggedFryzjerId);
+            KlientForm klientForm = new KlientForm();
 
             klientForm.Show();
             this.Hide();
@@ -76,6 +76,13 @@ namespace SalonFryzjerski
             KalendarzWiztyForm kalendarzWiztyForm = new KalendarzWiztyForm(LoggedFryzjerId);
             kalendarzWiztyForm.Show();
             this.Hide();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            GeneratorRaportowForm genr = new GeneratorRaportowForm();
+            genr.Show();
+                this.Hide();
         }
     }
 }

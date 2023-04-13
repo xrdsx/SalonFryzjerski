@@ -22,8 +22,8 @@ namespace SalonFryzjerski.models
         }
         private string GetConnectionString()
         {
-            string MachineName = Environment.MachineName;
-            return "Server=" + MachineName + ";Database=salo_fryzjerski;Trusted_Connection=true";
+            string MachineName = Environment.MachineName + "\\SQLEXPRESS";
+            return "Server=" + MachineName + ";Database=Salon_fryzjerski;Trusted_Connection=true";
 
         }
 
@@ -49,26 +49,7 @@ namespace SalonFryzjerski.models
             return fryzjerId;
         }
 
-        //public string GetFullNameById(int idFryzjer)
-        //{
-        //    string query = "SELECT Imie, Nazwisko FROM Fryzjer WHERE idFryzjera=@idFryzjer";
-        //    SqlCommand cmd = new SqlCommand(query, connection);
-        //    cmd.Parameters.AddWithValue("@idFryzjer", idFryzjer);
-
-        //    SqlDataReader reader = cmd.ExecuteReader();
-
-        //    string fullName = "";
-
-        //    if (reader.HasRows)
-        //    {
-        //        reader.Read();
-        //        fullName = reader["Imie"].ToString() + " " + reader["Nazwisko"].ToString();
-        //    }
-
-        //    reader.Close();
-
-        //    return fullName;
-        //}
+        
 
 
 

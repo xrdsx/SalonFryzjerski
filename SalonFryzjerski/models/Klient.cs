@@ -32,14 +32,14 @@ namespace SalonFryzjerski.models
             OpisWlosow = opisWlosow;
         }
 
-        public void Create(int fryzjerId)
+        public void Create()
         {
             Klient klient = this;
             Connection con = new Connection();
             con.Connect();
 
-            string query = "INSERT INTO Klient (Imie, Nazwisko, NumerTelefonu, OpisWlosow, IdFryzjer) " +
-                           "VALUES (@Imie, @Nazwisko, @NumerTelefonu, @OpisWlosow, @IdFryzjer)";
+            string query = "INSERT INTO Klient (Imie, Nazwisko, NumerTelefonu, OpisWlosow) " +
+                           "VALUES (@Imie, @Nazwisko, @NumerTelefonu, @OpisWlosow)";
 
             using (SqlCommand command = new SqlCommand(query, con.connection))
             {
@@ -47,7 +47,7 @@ namespace SalonFryzjerski.models
                 command.Parameters.AddWithValue("@Nazwisko", klient.Nazwisko);
                 command.Parameters.AddWithValue("@NumerTelefonu", klient.NumerTelefonu);
                 command.Parameters.AddWithValue("@OpisWlosow", klient.OpisWlosow);
-                command.Parameters.AddWithValue("@IdFryzjer", fryzjerId);
+                
 
                 command.ExecuteNonQuery();
 
