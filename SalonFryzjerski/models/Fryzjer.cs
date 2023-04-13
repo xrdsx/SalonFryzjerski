@@ -60,7 +60,29 @@ namespace SalonFryzjerski.models
             con.connection.Close();
         }
 
-        
+        public string GetFullNameById(int idFryzjer)
+        {
+            Connection connection = new Connection();
+            connection.Connect();
+            string query = "SELECT Imie, Nazwisko FROM Fryzjer WHERE idFryzjera=@idFryzjer";
+            SqlCommand cmd = new SqlCommand(query, connection.connection);
+            cmd.Parameters.AddWithValue("@idFryzjer", idFryzjer);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            string fullName = "";
+
+            if (reader.HasRows)
+            {
+                reader.Read();
+                fullName = reader["Imie"].ToString() + " " + reader["Nazwisko"].ToString();
+            }
+
+            reader.Close();
+            connection.connection.Close();
+            
+            return fullName;
+        }
 
         public void Update()
         {
@@ -121,16 +143,18 @@ namespace SalonFryzjerski.models
             return table;
         }
 
-        public static DataTable GetKlienciForLoggedFryzjer(int loggedFryzjerId, SqlConnection connection)
+        public DataTable GetWizytyForLoggedFryzjer(int loggedFryzjerId)
         {
-            string query = "SELECT * FROM Klient WHERE IdFryzjer=@idFryzjer";
-            SqlCommand cmd = new SqlCommand(query, connection);
+            Connection connection1 = new Connection();
+            connection1.Connect();
+            string query = "SELECT * FROM Zlecenia WHERE FryzjerFK=@idFryzjer";
+            SqlCommand cmd = new SqlCommand(query, connection1.connection);
             cmd.Parameters.AddWithValue("@idFryzjer", loggedFryzjerId);
 
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable table = new DataTable();
             adapter.Fill(table);
-
+            connection1.connection.Close();
             return table;
         }
 

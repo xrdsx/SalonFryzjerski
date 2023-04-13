@@ -25,7 +25,7 @@ namespace SalonFryzjerski.models
             this.nazwaUslugi = nazwaUslugi;
             this.cena = cena;
         }
-        public DataTable GetUslugi()
+        public DataView GetUslugi()
         {
             Connection con = new Connection();
             con.Connect();
@@ -34,7 +34,7 @@ namespace SalonFryzjerski.models
             DataTable dt = new DataTable();
             adapter.Fill(dt);
             con.connection.Close();
-            return dt;
+            return dt.DefaultView;
         }
         
         public void AddUsluga(Uslugi usluga)

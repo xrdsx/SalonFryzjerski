@@ -8,13 +8,12 @@ namespace SalonFryzjerski
         public Form1()
         {
             InitializeComponent();
-            log.Visible = false;
-            Connection con = new Connection();
-            con.Connect();
-            if(con.connection.State == System.Data.ConnectionState.Open)
-            {
-                log.Visible = true;
-            }
+            //log.Visible = false;
+            
+            //if(con.connection.State == System.Data.ConnectionState.Open)
+            //{
+            //    log.Visible = true;
+            //}
         }
 
         private void log_Click(object sender, EventArgs e)
@@ -36,22 +35,22 @@ namespace SalonFryzjerski
             Connection con = new Connection();
             con.Connect();
 
-            string fullName = con.GetFullName(username, password);
+            //string fullName = con.GetFullName(username, password);
             int idFryzjer = con.GetFryzjerId(username);
 
-            if (fullName != "")
-            {
-                MainPanel mainPanel = new MainPanel();
-                mainPanel.LoggedUser = fullName;
-                mainPanel.LoggedFryzjerId = idFryzjer;
+            //if (fullName != "")
+            //{
+            MainPanel mainPanel = new MainPanel();
+            //mainPanel.LoggedUser = fullName;
+            mainPanel.LoggedFryzjerId = idFryzjer;
 
-                mainPanel.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Niepoprawny login lub has³o");
-            }
+            mainPanel.Show();
+            this.Hide();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Niepoprawny login lub has³o");
+            //}
         }
     }
 }

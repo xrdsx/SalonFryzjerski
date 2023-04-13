@@ -104,6 +104,7 @@ namespace SalonFryzjerski.models
 
             return table;
         }
+        
 
         public DataTable GetZleceniaForLoggedFryzjer(int loggedFryzjerId, SqlConnection connection)
         {

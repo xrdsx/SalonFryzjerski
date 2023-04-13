@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.klientFkCcomboBox = new System.Windows.Forms.ComboBox();
+            this.klientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.usługaFkComboBox = new System.Windows.Forms.ComboBox();
             this.czasTrwanianumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
@@ -39,6 +41,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.klientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.czasTrwanianumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,12 +54,18 @@
             // 
             // klientFkCcomboBox
             // 
+            this.klientFkCcomboBox.DataSource = this.klientBindingSource;
             this.klientFkCcomboBox.FormattingEnabled = true;
             this.klientFkCcomboBox.Location = new System.Drawing.Point(130, 59);
             this.klientFkCcomboBox.Name = "klientFkCcomboBox";
             this.klientFkCcomboBox.Size = new System.Drawing.Size(198, 23);
             this.klientFkCcomboBox.TabIndex = 1;
             this.klientFkCcomboBox.SelectedIndexChanged += new System.EventHandler(this.klientFkCcomboBox_SelectedIndexChanged);
+            // 
+            // klientBindingSource
+            // 
+            this.klientBindingSource.DataSource = typeof(SalonFryzjerski.models.Klient);
+            this.klientBindingSource.CurrentChanged += new System.EventHandler(this.klientBindingSource_CurrentChanged);
             // 
             // usługaFkComboBox
             // 
@@ -155,6 +164,7 @@
             this.Name = "ZleceniaForm";
             this.Text = "ZleceniaForm";
             this.Load += new System.EventHandler(this.ZleceniaForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.klientBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.czasTrwanianumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -174,5 +184,6 @@
         private Label label4;
         private Label label5;
         private TextBox textBox1;
+        private BindingSource klientBindingSource;
     }
 }

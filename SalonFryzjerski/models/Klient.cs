@@ -12,9 +12,9 @@ namespace SalonFryzjerski.models
         public string Nazwisko { get; set; }
         public int NumerTelefonu { get; set; }
         public string OpisWlosow { get; set; }
-        public int IdFryzjer { get; set; }
+        public List<Klient> ListaKlientow{ get; set; }
 
-        
+
         public Klient()
         {
             Imie = "";
@@ -100,8 +100,9 @@ namespace SalonFryzjerski.models
 
             con.connection.Close();
         }
+        
 
-        public DataTable LoadTable()
+        public DataView LoadTable()
         {
             Connection con = new Connection();
             con.Connect();
@@ -114,7 +115,8 @@ namespace SalonFryzjerski.models
 
             con.connection.Close();
 
-            return table;
+            return table.DefaultView;
         }
+        
     }
 }
