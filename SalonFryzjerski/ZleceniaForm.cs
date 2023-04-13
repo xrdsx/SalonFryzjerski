@@ -63,6 +63,8 @@ namespace SalonFryzjerski
             zlecenia.FryzjerFK = LoggedUserId;
             zlecenia.CzasTrwania = Convert.ToInt32(czasTrwanianumericUpDown.Value);
             zlecenia.Create();
+            this.Close();
+            
 
         }
 

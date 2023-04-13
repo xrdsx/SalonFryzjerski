@@ -23,8 +23,8 @@ namespace SalonFryzjerski.models
 
         private void KalendarzWiztyForm_Load(object sender, EventArgs e)
         {
-            Fryzjer fryzjer = new Fryzjer();
-            dataGridView1.DataSource = fryzjer.GetWizytyForLoggedFryzjer(LoggedUserId);
+            ZleceniaViewModel zleceniaViewModel = new ZleceniaViewModel();
+            dataGridView1.DataSource = zleceniaViewModel.GetData(LoggedUserId);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
