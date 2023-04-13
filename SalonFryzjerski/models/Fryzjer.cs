@@ -112,10 +112,18 @@ namespace SalonFryzjerski.models
             Fryzjer fryzjer = this;
             Connection con = new Connection();
             con.Connect();
-
-            string query = "DELETE FROM Fryzjer WHERE idFryzjera=@idFryzjera;";
+            string query = "DELETE FROM Login WHERE fryzjer_id = @idFryzjera;";
 
             using (SqlCommand command = new SqlCommand(query, con.connection))
+            {
+                command.Parameters.AddWithValue("@idFryzjera", fryzjer.idFryzjera);
+
+                command.ExecuteNonQuery();
+            }
+            
+            string query1 = "DELETE FROM Fryzjer WHERE idFryzjera=@idFryzjera;";
+
+            using (SqlCommand command = new SqlCommand(query1, con.connection))
             {
                 command.Parameters.AddWithValue("@idFryzjera", fryzjer.idFryzjera);
 

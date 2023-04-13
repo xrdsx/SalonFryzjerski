@@ -41,6 +41,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.backButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.klientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.czasTrwanianumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -145,11 +146,22 @@
             this.textBox1.TabIndex = 11;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // backButton
+            // 
+            this.backButton.Location = new System.Drawing.Point(38, 314);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(134, 44);
+            this.backButton.TabIndex = 12;
+            this.backButton.Text = "Wstecz";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
             // ZleceniaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -185,5 +197,6 @@
         private Label label5;
         private TextBox textBox1;
         private BindingSource klientBindingSource;
+        private Button backButton;
     }
 }

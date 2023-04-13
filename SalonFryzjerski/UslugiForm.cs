@@ -30,5 +30,27 @@ namespace SalonFryzjerski
         {
 
         }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            Uslugi uslugi = new Uslugi();
+            uslugi.nazwaUslugi = textBox1.Text;
+            uslugi.cena = Convert.ToInt32(numericUpDown1.Value);
+            uslugi.AddUsluga(uslugi);
+            
+        }
+
+        private void usunButton_Click(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void wrocButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MainPanel mainPanel = new MainPanel();
+            mainPanel.Show();
+        }
     }
 }

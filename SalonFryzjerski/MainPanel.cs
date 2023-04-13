@@ -77,5 +77,12 @@ namespace SalonFryzjerski
             kalendarzWiztyForm.Show();
             this.Hide();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            UslugiForm uslugiForm = new UslugiForm();
+            uslugiForm.Show();
+            this.Hide();
+        }
     }
 }

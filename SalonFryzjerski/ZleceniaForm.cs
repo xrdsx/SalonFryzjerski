@@ -87,5 +87,12 @@ namespace SalonFryzjerski
         {
 
         }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MainPanel mainPanel = new MainPanel();
+            mainPanel.Show();
+        }
     }
 }
