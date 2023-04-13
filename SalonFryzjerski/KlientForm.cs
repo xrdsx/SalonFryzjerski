@@ -39,13 +39,21 @@ namespace SalonFryzjerski
             klient.Nazwisko = nazwiskoTextBox.Text;
             klient.NumerTelefonu = Convert.ToInt32(numerTelefonuNumericUpDown.Value);
             klient.OpisWlosow = opisTextBox.Text;
-            klient.Create(LoggedUserId);
-            
-            
-            
+            klient.Create();
+            this.Close();
+            MainPanel mainPanel = new MainPanel();
+            mainPanel.Show();
 
-            
+
+
+
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MainPanel mainPanel = new MainPanel();
+            mainPanel.Show();
+        }
     }
 }

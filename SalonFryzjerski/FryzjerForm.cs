@@ -34,19 +34,12 @@ namespace SalonFryzjerski
             uslugi.GetUslugi();
             fryzjerDataGridView.DataSource = dt;
             fryzjerDataGridView.DataMember = dt.TableName;
-            fryzjerDataGridView.Columns["idFryzjera"].Visible = false;
+            fryzjerDataGridView.Columns["idFryzjera"].Visible = true;
             
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            //Fryzjer fryzjer = new Fryzjer();
-            //fryzjer.Imie = imieTextBox.Text;
-            //fryzjer.Nazwisko = nazwiskoTextBox.Text;
-            //fryzjer.Stawka = Convert.ToDecimal(stawkaNumericUpDown.Value);
-            //fryzjer.IloscGodzin = Convert.ToInt32(iloscGodzinNumericUpDown.Value);
-            //fryzjer.Create();
-            //InitializeComponent();
             
 
         }
@@ -59,8 +52,7 @@ namespace SalonFryzjerski
         private void deleteButton_Click(object sender, EventArgs e)
         {
 
-            //Fryzjer fryzjer = fryzjerDataGridView.SelectedRows[0].DataBoundItem as Fryzjer;
-            //fryzjer.Delete(fryzjer.idFryzjera);
+            
         }
 
         private void fryzjerDataGridView_SelectionChanged(object sender, EventArgs e)
