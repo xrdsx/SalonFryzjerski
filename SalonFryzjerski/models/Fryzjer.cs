@@ -89,7 +89,8 @@ namespace SalonFryzjerski.models
             Connection con = new Connection();
             con.Connect();
 
-            string query = "DELETE FROM Fryzjer WHERE idFryzjera=@idFryzjera";
+            string query = "DELETE FROM Login WHERE fryzjer_id=@idFryzjera;" +
+                           "DELETE FROM Fryzjer WHERE idFryzjera=@idFryzjera;";
 
             using (SqlCommand command = new SqlCommand(query, con.connection))
             {
@@ -116,5 +117,22 @@ namespace SalonFryzjerski.models
 
             return table;
         }
+
+        public static DataTable GetKlienciForLoggedFryzjer(int loggedFryzjerId, SqlConnection connection)
+        {
+            string query = "SELECT * FROM Klient WHERE IdFryzjer=@idFryzjer";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@idFryzjer", loggedFryzjerId);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
+
+
+        
+
     }
 }

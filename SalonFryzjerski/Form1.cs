@@ -1,4 +1,5 @@
 using SalonFryzjerski.models;
+using System.Data.SqlClient;
 
 namespace SalonFryzjerski
 {
@@ -7,25 +8,50 @@ namespace SalonFryzjerski
         public Form1()
         {
             InitializeComponent();
-            button1.Visible = false;
+            log.Visible = false;
             Connection con = new Connection();
             con.Connect();
             if(con.connection.State == System.Data.ConnectionState.Open)
             {
-                button1.Visible = true;
+                log.Visible = true;
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void log_Click(object sender, EventArgs e)
         {
-            FryzjerForm fryzjerForm = new FryzjerForm();
-            fryzjerForm.ShowDialog();
+            
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void log_Click_1(object sender, EventArgs e)
+        {
+            string username = loginTextBox.Text;
+            string password = passTextBox.Text;
+            
+            Connection con = new Connection();
+            con.Connect();
+
+            string fullName = con.GetFullName(username, password);
+            int idFryzjer = con.GetFryzjerId(username);
+
+            if (fullName != "")
+            {
+                MainPanel mainPanel = new MainPanel();
+                mainPanel.LoggedUser = fullName;
+                mainPanel.LoggedFryzjerId = idFryzjer;
+
+                mainPanel.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Niepoprawny login lub has³o");
+            }
         }
     }
 }

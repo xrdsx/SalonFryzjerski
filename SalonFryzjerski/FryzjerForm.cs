@@ -14,11 +14,11 @@ namespace SalonFryzjerski
 {
     public partial class FryzjerForm : Form
     {
-        private BindingList<Fryzjer> fryzjerList;
+        
         public FryzjerForm()
         {
             InitializeComponent();
-
+            updateButton.Visible = false;
             LoadFryzjer();
         }
         private void FryzjerForm_Load(object sender, EventArgs e)
@@ -100,6 +100,17 @@ namespace SalonFryzjerski
 
         private void editButton_Click_1(object sender, EventArgs e)
         {
+            imieTextBox.Text = fryzjerDataGridView.SelectedRows[0].Cells[1].Value.ToString();
+            imieTextBox.Text = fryzjerDataGridView.SelectedRows[0].Cells[1].Value.ToString();
+            nazwiskoTextBox.Text = fryzjerDataGridView.SelectedRows[0].Cells[2].Value.ToString();
+            stawkaNumericUpDown.Value = Convert.ToDecimal(fryzjerDataGridView.SelectedRows[0].Cells[3].Value);
+            iloscGodzinNumericUpDown.Value = Convert.ToDecimal(fryzjerDataGridView.SelectedRows[0].Cells[4].Value);
+            updateButton.Visible = true;
+
+        }
+
+        private void updateButton_Click(object sender, EventArgs e)
+        {
             Fryzjer fryzjer = new Fryzjer();
             fryzjer.idFryzjera = Convert.ToInt32(fryzjerDataGridView.CurrentRow.Cells["idFryzjera"].Value);
             fryzjer.Imie = imieTextBox.Text;
@@ -107,7 +118,13 @@ namespace SalonFryzjerski
             fryzjer.Stawka = Convert.ToDecimal(stawkaNumericUpDown.Value);
             fryzjer.IloscGodzin = Convert.ToInt32(iloscGodzinNumericUpDown.Value);
             fryzjer.Update();
+            updateButton.Visible = false;
             LoadFryzjer();
+        }
+
+        private void stawkaNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

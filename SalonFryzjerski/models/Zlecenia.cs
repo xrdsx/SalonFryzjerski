@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace SalonFryzjerski.models
@@ -11,26 +12,29 @@ namespace SalonFryzjerski.models
         public int KlientFK { get; set; }
         public int FryzjerFK { get; set; }
         public int UslugaFK { get; set; }
+        public int CzasTrwania { get; set; }
 
         public Zlecenia()
         {
-            idZlecenia = -1;
+            Data = DateTime.Now;
         }
 
         public void Create()
         {
+            Zlecenia zlecenie = this;
             Connection con = new Connection();
             con.Connect();
 
-            string query = "INSERT INTO Zlecenia (Data, KlientFK, FryzjerFK, UslugaFK) " +
-                           "VALUES (@Data, @KlientFK, @FryzjerFK, @UslugaFK)";
+            string query = "INSERT INTO Zlecenia (Data, KlientFK, FryzjerFK, UslugaFK, CzasTrwania) " +
+                           "VALUES (@Data, @KlientFK, @FryzjerFK, @UslugaFK, @CzasTrwania)";
 
             using (SqlCommand command = new SqlCommand(query, con.connection))
             {
-                command.Parameters.AddWithValue("@Data", Data);
-                command.Parameters.AddWithValue("@KlientFK", KlientFK);
-                command.Parameters.AddWithValue("@FryzjerFK", FryzjerFK);
-                command.Parameters.AddWithValue("@UslugaFK", UslugaFK);
+                command.Parameters.AddWithValue("@Data", zlecenie.Data);
+                command.Parameters.AddWithValue("@KlientFK", zlecenie.KlientFK);
+                command.Parameters.AddWithValue("@FryzjerFK", zlecenie.FryzjerFK);
+                command.Parameters.AddWithValue("@UslugaFK", zlecenie.UslugaFK);
+                command.Parameters.AddWithValue("@CzasTrwania", zlecenie.CzasTrwania);
 
                 command.ExecuteNonQuery();
 
@@ -42,62 +46,34 @@ namespace SalonFryzjerski.models
             con.connection.Close();
         }
 
-        public static Zlecenia Read(int idZlecenia)
-        {
-            Connection con = new Connection();
-            con.Connect();
-
-            Zlecenia zlecenie = null;
-
-            string query = "SELECT * FROM Zlecenia WHERE idZlecenia=@idZlecenia";
-
-            using (SqlCommand command = new SqlCommand(query, con.connection))
-            {
-                command.Parameters.AddWithValue("@idZlecenia", idZlecenia);
-
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        zlecenie = new Zlecenia();
-                        zlecenie.idZlecenia = idZlecenia;
-                        zlecenie.Data = Convert.ToDateTime(reader["Data"]);
-                        zlecenie.KlientFK = Convert.ToInt32(reader["KlientFK"]);
-                        zlecenie.FryzjerFK = Convert.ToInt32(reader["FryzjerFK"]);
-                        zlecenie.UslugaFK = Convert.ToInt32(reader["UslugaFK"]);
-                    }
-                }
-            }
-
-            con.connection.Close();
-
-            return zlecenie;
-        }
-
         public void Update()
         {
+            Zlecenia zlecenie = this;
             Connection con = new Connection();
             con.Connect();
 
             string query = "UPDATE Zlecenia " +
-                           "SET Data=@Data, KlientFK=@KlientFK, FryzjerFK=@FryzjerFK, UslugaFK=@UslugaFK " +
+                           "SET Data=@Data, KlientFK=@KlientFK, FryzjerFK=@FryzjerFK, UslugaFK=@UslugaFK, CzasTrwania=@CzasTrwania " +
                            "WHERE idZlecenia=@idZlecenia";
 
             using (SqlCommand command = new SqlCommand(query, con.connection))
             {
-                command.Parameters.AddWithValue("@Data", Data);
-                command.Parameters.AddWithValue("@KlientFK", KlientFK);
-                command.Parameters.AddWithValue("@FryzjerFK", FryzjerFK);
-                command.Parameters.AddWithValue("@UslugaFK", UslugaFK);
-                command.Parameters.AddWithValue("@idZlecenia", idZlecenia);
+                command.Parameters.AddWithValue("@Data", zlecenie.Data);
+                command.Parameters.AddWithValue("@KlientFK", zlecenie.KlientFK);
+                command.Parameters.AddWithValue("@FryzjerFK", zlecenie.FryzjerFK);
+                command.Parameters.AddWithValue("@UslugaFK", zlecenie.UslugaFK);
+                command.Parameters.AddWithValue("@CzasTrwania", zlecenie.CzasTrwania);
+                command.Parameters.AddWithValue("@idZlecenia", zlecenie.idZlecenia);
 
                 command.ExecuteNonQuery();
             }
 
             con.connection.Close();
         }
-        public static void Delete(int idZlecenia)
+
+        public void Delete()
         {
+            Zlecenia zlecenie = this;
             Connection con = new Connection();
             con.Connect();
 
@@ -105,7 +81,7 @@ namespace SalonFryzjerski.models
 
             using (SqlCommand command = new SqlCommand(query, con.connection))
             {
-                command.Parameters.AddWithValue("@idZlecenia", idZlecenia);
+                command.Parameters.AddWithValue("@idZlecenia", zlecenie.idZlecenia);
 
                 command.ExecuteNonQuery();
             }
@@ -113,5 +89,34 @@ namespace SalonFryzjerski.models
             con.connection.Close();
         }
 
+        public DataTable LoadTable()
+        {
+            Connection con = new Connection();
+            con.Connect();
+
+            string query = "SELECT * FROM Zlecenia";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, con.connection);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+
+            con.connection.Close();
+
+            return table;
+        }
+
+        public DataTable GetZleceniaForLoggedFryzjer(int loggedFryzjerId, SqlConnection connection)
+        {
+            string query = "SELECT * FROM Zlecenie WHERE IdFryzjer=@idFryzjer";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@idFryzjer", loggedFryzjerId);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
     }
+
 }

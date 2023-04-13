@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace SalonFryzjerski.models
@@ -9,28 +10,44 @@ namespace SalonFryzjerski.models
         public int idKlienta { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
-        public DateTime Ostatnia_wizyta { get; set; }
-        public DateTime Nastepna_wizyta { get; set; }
+        public int NumerTelefonu { get; set; }
+        public string OpisWlosow { get; set; }
+        public int IdFryzjer { get; set; }
 
+        
         public Klient()
         {
-            idKlienta = -1;
+            Imie = "";
+            Nazwisko = "";
+            
+            OpisWlosow = "";
         }
 
-        public void Create()
+        private Klient(int idKlienta, string imie, string nazwisko, int numerTelefonu, string opisWlosow)
         {
+            this.idKlienta = idKlienta;
+            Imie = imie;
+            Nazwisko = nazwisko;
+            NumerTelefonu = numerTelefonu;
+            OpisWlosow = opisWlosow;
+        }
+
+        public void Create(int fryzjerId)
+        {
+            Klient klient = this;
             Connection con = new Connection();
             con.Connect();
 
-            string query = "INSERT INTO Klient (Imie, Nazwisko, Ostatnia_wizyta, Nastepna_wizyta) " +
-                           "VALUES (@Imie, @Nazwisko, @Ostatnia_wizyta, @Nastepna_wizyta)";
+            string query = "INSERT INTO Klient (Imie, Nazwisko, NumerTelefonu, OpisWlosow, IdFryzjer) " +
+                           "VALUES (@Imie, @Nazwisko, @NumerTelefonu, @OpisWlosow, @IdFryzjer)";
 
             using (SqlCommand command = new SqlCommand(query, con.connection))
             {
-                command.Parameters.AddWithValue("@Imie", Imie);
-                command.Parameters.AddWithValue("@Nazwisko", Nazwisko);
-                command.Parameters.AddWithValue("@Ostatnia_wizyta", Ostatnia_wizyta);
-                command.Parameters.AddWithValue("@Nastepna_wizyta", Nastepna_wizyta);
+                command.Parameters.AddWithValue("@Imie", klient.Imie);
+                command.Parameters.AddWithValue("@Nazwisko", klient.Nazwisko);
+                command.Parameters.AddWithValue("@NumerTelefonu", klient.NumerTelefonu);
+                command.Parameters.AddWithValue("@OpisWlosow", klient.OpisWlosow);
+                command.Parameters.AddWithValue("@IdFryzjer", fryzjerId);
 
                 command.ExecuteNonQuery();
 
@@ -42,62 +59,33 @@ namespace SalonFryzjerski.models
             con.connection.Close();
         }
 
-        public static Klient Read(int idKlienta)
-        {
-            Connection con = new Connection();
-            con.Connect();
-
-            Klient klient = null;
-
-            string query = "SELECT * FROM Klient WHERE idKlienta=@idKlienta";
-
-            using (SqlCommand command = new SqlCommand(query, con.connection))
-            {
-                command.Parameters.AddWithValue("@idKlienta", idKlienta);
-
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        klient = new Klient();
-                        klient.idKlienta = idKlienta;
-                        klient.Imie = Convert.ToString(reader["Imie"]);
-                        klient.Nazwisko = Convert.ToString(reader["Nazwisko"]);
-                        klient.Ostatnia_wizyta = Convert.ToDateTime(reader["Ostatnia_wizyta"]);
-                        klient.Nastepna_wizyta = Convert.ToDateTime(reader["Nastepna_wizyta"]);
-                    }
-                }
-            }
-
-            con.connection.Close();
-
-            return klient;
-        }
-
         public void Update()
         {
+            Klient klient = this;
             Connection con = new Connection();
             con.Connect();
 
             string query = "UPDATE Klient " +
-                           "SET Imie=@Imie, Nazwisko=@Nazwisko, Ostatnia_wizyta=@Ostatnia_wizyta, Nastepna_wizyta=@Nastepna_wizyta " +
+                           "SET Imie=@Imie, Nazwisko=@Nazwisko, NumerTelefonu=@NumerTelefonu, OpisWlosow=@OpisWlosow " +
                            "WHERE idKlienta=@idKlienta";
 
             using (SqlCommand command = new SqlCommand(query, con.connection))
             {
-                command.Parameters.AddWithValue("@Imie", Imie);
-                command.Parameters.AddWithValue("@Nazwisko", Nazwisko);
-                command.Parameters.AddWithValue("@Ostatnia_wizyta", Ostatnia_wizyta);
-                command.Parameters.AddWithValue("@Nastepna_wizyta", Nastepna_wizyta);
-                command.Parameters.AddWithValue("@idKlienta", idKlienta);
+                command.Parameters.AddWithValue("@Imie", klient.Imie);
+                command.Parameters.AddWithValue("@Nazwisko", klient.Nazwisko);
+                command.Parameters.AddWithValue("@NumerTelefonu", klient.NumerTelefonu);
+                command.Parameters.AddWithValue("@OpisWlosow", klient.OpisWlosow);
+                command.Parameters.AddWithValue("@idKlienta", klient.idKlienta);
+
                 command.ExecuteNonQuery();
             }
 
             con.connection.Close();
         }
 
-        public static void Delete(int idKlienta)
+        public void Delete()
         {
+            Klient klient = this;
             Connection con = new Connection();
             con.Connect();
 
@@ -105,12 +93,28 @@ namespace SalonFryzjerski.models
 
             using (SqlCommand command = new SqlCommand(query, con.connection))
             {
-                command.Parameters.AddWithValue("@idKlienta", idKlienta);
+                command.Parameters.AddWithValue("@idKlienta", klient.idKlienta);
 
                 command.ExecuteNonQuery();
             }
 
             con.connection.Close();
+        }
+
+        public DataTable LoadTable()
+        {
+            Connection con = new Connection();
+            con.Connect();
+
+            string query = "SELECT * FROM Klient";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, con.connection);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+
+            con.connection.Close();
+
+            return table;
         }
     }
 }
