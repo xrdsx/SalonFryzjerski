@@ -30,6 +30,8 @@ namespace SalonFryzjerski
         {
             Fryzjer fryzjer = new Fryzjer();
             var dt = fryzjer.LoadTable();
+            Uslugi uslugi = new Uslugi();
+            uslugi.GetUslugi();
             fryzjerDataGridView.DataSource = dt;
             fryzjerDataGridView.DataMember = dt.TableName;
             fryzjerDataGridView.Columns["idFryzjera"].Visible = false;

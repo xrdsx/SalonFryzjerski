@@ -15,6 +15,7 @@ namespace SalonFryzjerski.models
         public string Nazwisko { get; set; }
         public decimal? Stawka { get; set; }
         public int? IloscGodzin { get; set; }
+        public int? PodstawowaWyplata { get; set; }
 
         public Fryzjer()
         {
@@ -29,6 +30,7 @@ namespace SalonFryzjerski.models
             Nazwisko = nazwisko;
             Stawka = stawka;
             IloscGodzin = iloscGodzin;
+           
         }
        
         
@@ -104,6 +106,7 @@ namespace SalonFryzjerski.models
         public DataTable LoadTable() 
         {
             
+           
             Connection con = new Connection();
             con.Connect();
 
