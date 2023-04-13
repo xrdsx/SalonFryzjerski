@@ -58,7 +58,7 @@ namespace SalonFryzjerski
 
         private void button2_Click(object sender, EventArgs e)
         {
-            KlientForm klientForm = new KlientForm();
+            KlientForm klientForm = new KlientForm(LoggedFryzjerId);
 
             klientForm.Show();
             this.Hide();
@@ -80,9 +80,9 @@ namespace SalonFryzjerski
 
         private void button5_Click(object sender, EventArgs e)
         {
-            GeneratorRaportowForm genr = new GeneratorRaportowForm();
-            genr.Show();
-                this.Hide();
+            UslugiForm uslugiForm = new UslugiForm();
+            uslugiForm.Show();
+            this.Hide();
         }
     }
 }

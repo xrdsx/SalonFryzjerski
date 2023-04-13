@@ -116,11 +116,18 @@ namespace SalonFryzjerski.models
             Fryzjer fryzjer = this;
             Connection con = new Connection();
             con.Connect();
-
-            string query = "DELETE FROM Login WHERE fryzjer_id=@idFryzjera;" +
-                           "DELETE FROM Fryzjer WHERE idFryzjera=@idFryzjera;";
+            string query = "DELETE FROM Login WHERE fryzjer_id = @idFryzjera;";
 
             using (SqlCommand command = new SqlCommand(query, con.connection))
+            {
+                command.Parameters.AddWithValue("@idFryzjera", fryzjer.idFryzjera);
+
+                command.ExecuteNonQuery();
+            }
+            
+            string query1 = "DELETE FROM Fryzjer WHERE idFryzjera=@idFryzjera;";
+
+            using (SqlCommand command = new SqlCommand(query1, con.connection))
             {
                 command.Parameters.AddWithValue("@idFryzjera", fryzjer.idFryzjera);
 
@@ -147,20 +154,12 @@ namespace SalonFryzjerski.models
             return table;
         }
 
-        public DataTable GetWizytyForLoggedFryzjer(int loggedFryzjerId)
-        {
-            Connection connection1 = new Connection();
-            connection1.Connect();
-            string query = "SELECT * FROM Zlecenia WHERE FryzjerFK=@idFryzjer";
-            SqlCommand cmd = new SqlCommand(query, connection1.connection);
-            cmd.Parameters.AddWithValue("@idFryzjer", loggedFryzjerId);
-
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            DataTable table = new DataTable();
-            adapter.Fill(table);
-            connection1.connection.Close();
-            return table;
-        }
+        //public DataTable GetWizytyForLoggedFryzjer(int loggedFryzjerId)
+        //{
+        //    ZleceniaViewModel zleceniaViewModel = new ZleceniaViewModel();
+        //    zleceniaViewModel.GetData();
+        //    return table;
+        //}
 
         public decimal GetPodstawowaWyplata(int idFryzjera)
         {

@@ -63,6 +63,8 @@ namespace SalonFryzjerski
             zlecenia.FryzjerFK = LoggedUserId;
             zlecenia.CzasTrwania = Convert.ToInt32(czasTrwanianumericUpDown.Value);
             zlecenia.Create();
+            this.Close();
+            
 
         }
 
@@ -84,6 +86,13 @@ namespace SalonFryzjerski
         private void klientBindingSource_CurrentChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MainPanel mainPanel = new MainPanel();
+            mainPanel.Show();
         }
     }
 }

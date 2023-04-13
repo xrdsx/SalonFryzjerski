@@ -52,19 +52,7 @@ namespace SalonFryzjerski.models
             }
             connection.connection.Close();
         }
-        public void DeleteUsluga(int idUslugi)
-        {
-            Connection connection = new Connection();
-            connection.connection.Open();
-            using (SqlCommand command = new SqlCommand())
-            {
-                command.Connection = connection.connection;
-                command.CommandText = "DELETE FROM UslugiSlownik WHERE idUslugi=@idUslugi";
-                command.Parameters.AddWithValue("@idUslugi", idUslugi);
-                command.ExecuteNonQuery();
-            }
-            connection.connection.Close();
-        }
+
         public void UpdateCena(int idUslugi)
         {
             Connection connection = new Connection();
