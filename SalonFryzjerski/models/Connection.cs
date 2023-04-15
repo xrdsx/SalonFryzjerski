@@ -29,13 +29,14 @@ namespace SalonFryzjerski.models
 
         
 
-        public int GetFryzjerId(string username)
+        public int GetFryzjerId(string username, string password)
         {
+            Connect();
             int fryzjerId = -1;
 
-            SqlCommand cmd = new SqlCommand("SELECT fryzjer_id FROM Login WHERE username=@username", connection);
+            SqlCommand cmd = new SqlCommand("SELECT fryzjer_id FROM Login WHERE username=@username AND password_hash=@password", connection);
             cmd.Parameters.AddWithValue("@username", username);
-
+            cmd.Parameters.AddWithValue("@password", password);
             SqlDataReader reader = cmd.ExecuteReader();
 
             if (reader.HasRows)
@@ -45,32 +46,52 @@ namespace SalonFryzjerski.models
             }
 
             reader.Close();
-
+            connection.Close();
             return fryzjerId;
         }
 
-        //public string GetFullNameById(int idFryzjer)
-        //{
-        //    string query = "SELECT Imie, Nazwisko FROM Fryzjer WHERE idFryzjera=@idFryzjer";
-        //    SqlCommand cmd = new SqlCommand(query, connection);
-        //    cmd.Parameters.AddWithValue("@idFryzjer", idFryzjer);
+        public string GetFullNameById(int idFryzjer)
+        {
+            string query = "SELECT Imie, Nazwisko FROM Fryzjer WHERE idFryzjera=@idFryzjer";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@idFryzjer", idFryzjer);
 
-        //    SqlDataReader reader = cmd.ExecuteReader();
+            SqlDataReader reader = cmd.ExecuteReader();
 
-        //    string fullName = "";
+            string fullName = "";
 
-        //    if (reader.HasRows)
-        //    {
-        //        reader.Read();
-        //        fullName = reader["Imie"].ToString() + " " + reader["Nazwisko"].ToString();
-        //    }
+            if (reader.HasRows)
+            {
+                reader.Read();
+                fullName = reader["Imie"].ToString() + " " + reader["Nazwisko"].ToString();
+            }
 
-        //    reader.Close();
+            reader.Close();
 
-        //    return fullName;
-        //}
+            return fullName;
+        }
 
+        public bool CheckLogin(string login, string pass)
+        {
+            Connect();
+            bool result = false;
 
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Login WHERE username=@username AND password_hash=@password", connection);
+            cmd.Parameters.AddWithValue("@username", login);
+            cmd.Parameters.AddWithValue("@password", pass);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                result = true;
+            }
+
+            reader.Close();
+            connection.Close();
+            return result;
+        }
+        
 
 
 

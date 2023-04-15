@@ -40,10 +40,11 @@ namespace SalonFryzjerski.models
             Connection con = new Connection();
             con.Connect();
 
-            string query = "INSERT INTO Fryzjer (Imie, Nazwisko, Stawka, IloscGodzin) " +
+            
+            string query1 = "INSERT INTO Fryzjer (Imie, Nazwisko, Stawka, IloscGodzin) " +
                            "VALUES (@Imie, @Nazwisko, @Stawka, @IloscGodzin)";
 
-            using (SqlCommand command = new SqlCommand(query, con.connection))
+            using (SqlCommand command = new SqlCommand(query1, con.connection))
             {
                 command.Parameters.AddWithValue("@Imie", fryzjer.Imie);
                 command.Parameters.AddWithValue("@Nazwisko", fryzjer.Nazwisko);
@@ -52,11 +53,12 @@ namespace SalonFryzjerski.models
 
                 command.ExecuteNonQuery();
 
-                query = "SELECT @@IDENTITY";
-                command.CommandText = query;
+                query1 = "SELECT @@IDENTITY";
+                command.CommandText = query1;
                 idFryzjera = Convert.ToInt32(command.ExecuteScalar());
             }
-
+            string query2 = "INSERT INTO Login (Imie, Nazwisko, Stawka, IloscGodzin, PodstawowaWyplata) " +
+                           "VALUES (@Imie, @Nazwisko, @Stawka, @IloscGodzin, @PodstawowaWyplata)";
             con.connection.Close();
         }
 
