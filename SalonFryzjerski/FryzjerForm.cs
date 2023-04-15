@@ -14,80 +14,45 @@ namespace SalonFryzjerski
 {
     public partial class FryzjerForm : Form
     {
-        private BindingList<Fryzjer> fryzjerList;
+
         public FryzjerForm()
         {
             InitializeComponent();
-
-            LoadFryzjerList();
+            updateButton.Visible = false;
+            LoadFryzjer();
         }
         private void FryzjerForm_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void LoadFryzjerList()
+        private void LoadFryzjer()
         {
-            fryzjerList = new BindingList<Fryzjer>();
-            Connection connection = new Connection();
-            using (connection.connection)
-            {
-                connection.Connect();
-                   
-                
+            Fryzjer fryzjer = new Fryzjer();
+            var dt = fryzjer.LoadTable();
+            Uslugi uslugi = new Uslugi();
+            uslugi.GetUslugi();
+            fryzjerDataGridView.DataSource = dt;
+            fryzjerDataGridView.DataMember = dt.TableName;
+            fryzjerDataGridView.Columns["idFryzjera"].Visible = true;
 
-                string query = "SELECT * FROM Fryzjer";
-
-                using (SqlCommand command = new SqlCommand(query, connection.connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Fryzjer fryzjer = new Fryzjer();
-                            fryzjer.idFryzjera = Convert.ToInt32(reader["idFryzjera"]);
-                            fryzjer.Imie = Convert.ToString(reader["Imie"]);
-                            fryzjer.Nazwisko = Convert.ToString(reader["Nazwisko"]);
-                            fryzjer.Stawka = Convert.ToDecimal(reader["Stawka"]);
-                            fryzjer.IloscGodzin = Convert.ToInt32(reader["IloscGodzin"]);
-                            fryzjerList.Add(fryzjer);
-                        }
-                    }
-                }
-
-                connection.connection.Close();
-            }
-
-            fryzjerDataGridView.DataSource = fryzjerList;
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            Fryzjer fryzjer = new Fryzjer();
-            fryzjer.Imie = imieTextBox.Text;
-            fryzjer.Nazwisko = nazwiskoTextBox.Text;
-            fryzjer.Stawka = Convert.ToDecimal(stawkaNumericUpDown.Value);
-            fryzjer.IloscGodzin = Convert.ToInt32(iloscGodzinNumericUpDown.Value);
-            fryzjer.Create();
-            fryzjerList.Add(fryzjer);
+
+
         }
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            Fryzjer fryzjer = fryzjerDataGridView.SelectedRows[0].DataBoundItem as Fryzjer;
-            fryzjer.Imie = imieTextBox.Text;
-            fryzjer.Nazwisko = nazwiskoTextBox.Text;
-            fryzjer.Stawka = Convert.ToDecimal(stawkaNumericUpDown.Value);
-            fryzjer.IloscGodzin = Convert.ToInt32(iloscGodzinNumericUpDown.Value);
-            fryzjer.Update();
-            fryzjerDataGridView.Refresh();
+
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            Fryzjer fryzjer = fryzjerDataGridView.SelectedRows[0].DataBoundItem as Fryzjer;
-            fryzjerList.Remove(fryzjer);
-            Fryzjer.Delete(fryzjer.idFryzjera);
+
+
         }
 
         private void fryzjerDataGridView_SelectionChanged(object sender, EventArgs e)
@@ -97,9 +62,89 @@ namespace SalonFryzjerski
                 Fryzjer fryzjer = fryzjerDataGridView.SelectedRows[0].DataBoundItem as Fryzjer;
                 imieTextBox.Text = fryzjer.Imie;
                 nazwiskoTextBox.Text = fryzjer.Nazwisko;
-                stawkaNumericUpDown.Value = fryzjer.Stawka;
-                iloscGodzinNumericUpDown.Value = fryzjer.IloscGodzin;
+                stawkaNumericUpDown.Value = (decimal)fryzjer.Stawka;
+                iloscGodzinNumericUpDown.Value = (decimal)fryzjer.IloscGodzin;
             }
+        }
+
+        private void fryzjerDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void addButton_Click_1(object sender, EventArgs e)
+        {
+            Fryzjer fryzjer = new Fryzjer();
+            fryzjer.Imie = imieTextBox.Text;
+            fryzjer.Nazwisko = nazwiskoTextBox.Text;
+            fryzjer.Stawka = Convert.ToDecimal(stawkaNumericUpDown.Value);
+            fryzjer.IloscGodzin = Convert.ToInt32(iloscGodzinNumericUpDown.Value);
+            fryzjer.Create();
+
+            Login fryzjerLogin = new Login(fryzjer.idFryzjera, loginTextBox.Text, hasloTextBox.Text);
+            fryzjerLogin.Create();
+
+            LoadFryzjer();
+        }
+
+        private void deleteButton_Click_1(object sender, EventArgs e)
+        {
+
+            Fryzjer fryzjer = new Fryzjer();
+            fryzjer.idFryzjera = Convert.ToInt32(fryzjerDataGridView.SelectedRows[0].Cells[0].Value);
+            fryzjer.Delete();
+            LoadFryzjer();
+        }
+
+        private void editButton_Click_1(object sender, EventArgs e)
+        {
+            imieTextBox.Text = fryzjerDataGridView.SelectedRows[0].Cells[1].Value.ToString();
+            imieTextBox.Text = fryzjerDataGridView.SelectedRows[0].Cells[1].Value.ToString();
+            nazwiskoTextBox.Text = fryzjerDataGridView.SelectedRows[0].Cells[2].Value.ToString();
+            stawkaNumericUpDown.Value = Convert.ToDecimal(fryzjerDataGridView.SelectedRows[0].Cells[3].Value);
+            iloscGodzinNumericUpDown.Value = Convert.ToDecimal(fryzjerDataGridView.SelectedRows[0].Cells[4].Value);
+            updateButton.Visible = true;
+
+        }
+
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+            Fryzjer fryzjer = new Fryzjer();
+            fryzjer.idFryzjera = Convert.ToInt32(fryzjerDataGridView.CurrentRow.Cells["idFryzjera"].Value);
+            fryzjer.Imie = imieTextBox.Text;
+            fryzjer.Nazwisko = nazwiskoTextBox.Text;
+            fryzjer.Stawka = Convert.ToDecimal(stawkaNumericUpDown.Value);
+            fryzjer.IloscGodzin = Convert.ToInt32(iloscGodzinNumericUpDown.Value);
+            fryzjer.Update();
+            updateButton.Visible = false;
+            LoadFryzjer();
+        }
+
+        private void stawkaNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MainPanel mainPanel = new MainPanel();
+            mainPanel.Show();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
