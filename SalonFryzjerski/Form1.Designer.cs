@@ -37,7 +37,7 @@
             // 
             // log
             // 
-            this.log.Location = new System.Drawing.Point(224, 215);
+            this.log.Location = new System.Drawing.Point(64, 197);
             this.log.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.log.Name = "log";
             this.log.Size = new System.Drawing.Size(231, 73);
@@ -48,14 +48,14 @@
             // 
             // loginTextBox
             // 
-            this.loginTextBox.Location = new System.Drawing.Point(298, 48);
+            this.loginTextBox.Location = new System.Drawing.Point(138, 74);
             this.loginTextBox.Name = "loginTextBox";
             this.loginTextBox.Size = new System.Drawing.Size(157, 23);
             this.loginTextBox.TabIndex = 1;
             // 
             // passTextBox
             // 
-            this.passTextBox.Location = new System.Drawing.Point(298, 117);
+            this.passTextBox.Location = new System.Drawing.Point(138, 143);
             this.passTextBox.Name = "passTextBox";
             this.passTextBox.Size = new System.Drawing.Size(157, 23);
             this.passTextBox.TabIndex = 2;
@@ -63,7 +63,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(224, 56);
+            this.label1.Location = new System.Drawing.Point(64, 82);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 15);
             this.label1.TabIndex = 3;
@@ -72,7 +72,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(224, 125);
+            this.label2.Location = new System.Drawing.Point(64, 151);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 15);
             this.label2.TabIndex = 4;
@@ -82,7 +82,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 338);
+            this.ClientSize = new System.Drawing.Size(366, 288);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.passTextBox);

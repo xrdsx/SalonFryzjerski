@@ -58,13 +58,18 @@
             // numerTelefonuNumericUpDown
             // 
             this.numerTelefonuNumericUpDown.Location = new System.Drawing.Point(151, 119);
+            this.numerTelefonuNumericUpDown.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.numerTelefonuNumericUpDown.Name = "numerTelefonuNumericUpDown";
             this.numerTelefonuNumericUpDown.Size = new System.Drawing.Size(250, 23);
             this.numerTelefonuNumericUpDown.TabIndex = 2;
             // 
             // opisTextBox
             // 
-            this.opisTextBox.Location = new System.Drawing.Point(151, 187);
+            this.opisTextBox.Location = new System.Drawing.Point(151, 164);
             this.opisTextBox.Multiline = true;
             this.opisTextBox.Name = "opisTextBox";
             this.opisTextBox.Size = new System.Drawing.Size(250, 164);
@@ -100,7 +105,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 251);
+            this.label4.Location = new System.Drawing.Point(27, 213);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(106, 15);
             this.label4.TabIndex = 7;
@@ -108,7 +113,7 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(39, 431);
+            this.addButton.Location = new System.Drawing.Point(27, 354);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(128, 70);
             this.addButton.TabIndex = 8;
@@ -118,7 +123,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(273, 431);
+            this.button2.Location = new System.Drawing.Point(273, 366);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(128, 70);
             this.button2.TabIndex = 9;
@@ -130,7 +135,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 600);
+            this.ClientSize = new System.Drawing.Size(425, 469);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.label4);

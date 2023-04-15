@@ -116,7 +116,7 @@ namespace SalonFryzjerski.models
             Fryzjer fryzjer = this;
             Connection con = new Connection();
             con.Connect();
-            string query = "DELETE FROM Login WHERE fryzjer_id = @idFryzjera;";
+            string query = "DELETE FROM Zlecenia WHERE FryzjerFk= @idFryzjera;";
 
             using (SqlCommand command = new SqlCommand(query, con.connection))
             {
@@ -124,10 +124,18 @@ namespace SalonFryzjerski.models
 
                 command.ExecuteNonQuery();
             }
-            
-            string query1 = "DELETE FROM Fryzjer WHERE idFryzjera=@idFryzjera;";
+            string query1 = "DELETE FROM Login WHERE fryzjer_id = @idFryzjera;";
 
             using (SqlCommand command = new SqlCommand(query1, con.connection))
+            {
+                command.Parameters.AddWithValue("@idFryzjera", fryzjer.idFryzjera);
+
+                command.ExecuteNonQuery();
+            }
+            
+            string query2 = "DELETE FROM Fryzjer WHERE idFryzjera=@idFryzjera;";
+
+            using (SqlCommand command = new SqlCommand(query2, con.connection))
             {
                 command.Parameters.AddWithValue("@idFryzjera", fryzjer.idFryzjera);
 
@@ -154,13 +162,7 @@ namespace SalonFryzjerski.models
             return table;
         }
 
-        //public DataTable GetWizytyForLoggedFryzjer(int loggedFryzjerId)
-        //{
-        //    ZleceniaViewModel zleceniaViewModel = new ZleceniaViewModel();
-        //    zleceniaViewModel.GetData();
-        //    return table;
-        //}
-
+       
         public decimal GetPodstawowaWyplata(int idFryzjera)
         {
             decimal podstawowaWyplata = 0;
@@ -214,13 +216,15 @@ namespace SalonFryzjerski.models
             {
                 bonus = 150;
             }
-            else if (liczbaZlecen > 20)
+            else if (liczbaZlecen > 1)
             {
                 bonus = 100;
             }
 
             return bonus;
         }
+
+        
 
 
 

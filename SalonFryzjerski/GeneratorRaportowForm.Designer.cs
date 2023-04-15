@@ -47,7 +47,13 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -66,17 +72,17 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(57, 24);
+            this.groupBox1.Location = new System.Drawing.Point(21, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(462, 604);
+            this.groupBox1.Size = new System.Drawing.Size(385, 353);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "RACHUNEK";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(271, 395);
+            this.label14.Location = new System.Drawing.Point(267, 315);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(44, 15);
             this.label14.TabIndex = 13;
@@ -85,7 +91,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(215, 395);
+            this.label13.Location = new System.Drawing.Point(211, 315);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(50, 15);
             this.label13.TabIndex = 12;
@@ -202,51 +208,104 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(663, 56);
+            this.comboBox1.Location = new System.Drawing.Point(140, 75);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.Size = new System.Drawing.Size(200, 23);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(669, 100);
+            this.dateTimePicker1.Location = new System.Drawing.Point(140, 112);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
             this.dateTimePicker1.TabIndex = 2;
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(669, 145);
+            this.dateTimePicker2.Location = new System.Drawing.Point(140, 151);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 23);
             this.dateTimePicker2.TabIndex = 3;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(663, 195);
+            this.button1.Location = new System.Drawing.Point(32, 231);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 81);
+            this.button1.Size = new System.Drawing.Size(308, 81);
             this.button1.TabIndex = 4;
             this.button1.Text = "GENERUJ RAPORT";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(31, 83);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(90, 15);
+            this.label15.TabIndex = 5;
+            this.label15.Text = "Wybierz fryzjera";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(31, 118);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(48, 15);
+            this.label16.TabIndex = 6;
+            this.label16.Text = "Data od";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(31, 151);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(48, 15);
+            this.label17.TabIndex = 7;
+            this.label17.Text = "Data do";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.dateTimePicker2);
+            this.groupBox2.Controls.Add(this.label16);
+            this.groupBox2.Controls.Add(this.dateTimePicker1);
+            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Location = new System.Drawing.Point(429, 30);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(382, 335);
+            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "DANE DO RAPORTU";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(659, 387);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(152, 56);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "COFNIJ";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // GeneratorRaportowForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 806);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.comboBox1);
+            this.ClientSize = new System.Drawing.Size(857, 455);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "GeneratorRaportowForm";
             this.Text = "GENERUJ RAPORT";
             this.Load += new System.EventHandler(this.GeneratorRaportowForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -272,5 +331,10 @@
         private DateTimePicker dateTimePicker1;
         private DateTimePicker dateTimePicker2;
         private Button button1;
+        private Label label15;
+        private Label label16;
+        private Label label17;
+        private GroupBox groupBox2;
+        private Button button2;
     }
 }
