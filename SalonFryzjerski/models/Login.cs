@@ -14,12 +14,12 @@ namespace SalonFryzjerski.models
         public string Password { get; set; }
         public string Role { get; set; }
 
-        public Login(int fryzjerId, string username, string password)
+        public Login(int fryzjerId, string username, string password, string role)
         {
             FryzjerId = fryzjerId;
             Username = username;
             Password = password;
-            
+            Role = role;
         }
 
         public void Create()
@@ -27,8 +27,8 @@ namespace SalonFryzjerski.models
             Connection con = new Connection();
             con.Connect();
 
-            string query = "INSERT INTO Login (username, password_hash, fryzjer_id) " +
-                           "VALUES (@username, @password_hash, @fryzjer_id)";
+            string query = "INSERT INTO Login (username, password_hash, fryzjer_id, role) " +
+                           "VALUES (@username, @password_hash, @fryzjer_id, @role)";
 
             using (SqlCommand command = new SqlCommand(query, con.connection))
             {
@@ -36,6 +36,8 @@ namespace SalonFryzjerski.models
                 command.Parameters.AddWithValue("@username", Username);
                 command.Parameters.AddWithValue("@password_hash", Password);
                 command.Parameters.AddWithValue("@fryzjer_id", FryzjerId);
+                command.Parameters.AddWithValue("@role", Role);
+
                 command.ExecuteNonQuery();
             }
 

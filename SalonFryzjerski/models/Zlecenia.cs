@@ -18,7 +18,7 @@ namespace SalonFryzjerski.models
         {
             Data = DateTime.Now;
         }
-        
+
         public void Create()
         {
             Zlecenia zlecenie = this;

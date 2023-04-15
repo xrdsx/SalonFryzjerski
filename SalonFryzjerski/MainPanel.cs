@@ -38,7 +38,9 @@ namespace SalonFryzjerski
 
         private void MainPanel_Load(object sender, EventArgs e)
         {
-            label2.Text = LoggedUser;
+            Fryzjer fryzjer = new Fryzjer();
+            
+            label3.Text = fryzjer.GetFullNameById(LoggedFryzjerId);
         }
 
         private void logOutButton_Click(object sender, EventArgs e)
@@ -83,6 +85,14 @@ namespace SalonFryzjerski
             UslugiForm uslugiForm = new UslugiForm();
             uslugiForm.Show();
             this.Hide();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            GeneratorRaportowForm generator = new GeneratorRaportowForm();
+            generator.Show();
+            this.Hide();
+
         }
     }
 }

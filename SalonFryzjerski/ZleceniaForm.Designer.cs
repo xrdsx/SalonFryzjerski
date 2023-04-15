@@ -148,11 +148,11 @@
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(38, 314);
+            this.backButton.Location = new System.Drawing.Point(220, 327);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(134, 44);
+            this.backButton.Size = new System.Drawing.Size(108, 44);
             this.backButton.TabIndex = 12;
-            this.backButton.Text = "Wstecz";
+            this.backButton.Text = "COFNIJ";
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
@@ -160,7 +160,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(354, 383);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label5);

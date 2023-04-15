@@ -47,6 +47,8 @@
             this.loginTextBox = new System.Windows.Forms.TextBox();
             this.updateButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fryzjerDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stawkaNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iloscGodzinNumericUpDown)).BeginInit();
@@ -90,7 +92,7 @@
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(888, 400);
+            this.deleteButton.Location = new System.Drawing.Point(899, 402);
             this.deleteButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(182, 94);
@@ -199,7 +201,7 @@
             this.groupBox1.Controls.Add(this.iloscGodzinNumericUpDown);
             this.groupBox1.Location = new System.Drawing.Point(12, 412);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(519, 326);
+            this.groupBox1.Size = new System.Drawing.Size(862, 326);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DODWANIE FRYZJERA";
@@ -253,13 +255,31 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(692, 653);
+            this.button1.Location = new System.Drawing.Point(899, 664);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(207, 74);
+            this.button1.Size = new System.Drawing.Size(182, 74);
             this.button1.TabIndex = 13;
             this.button1.Text = "Powrót";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(654, 121);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(153, 23);
+            this.comboBox1.TabIndex = 17;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(527, 129);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(30, 15);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Rola";
             // 
             // FryzjerForm
             // 

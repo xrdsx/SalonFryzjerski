@@ -50,7 +50,7 @@ namespace SalonFryzjerski
             usługaFkComboBox.ValueMember = "idUslugi";
 
 
-            //klientBindingSource.DataSource = klient.LoadTable();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
