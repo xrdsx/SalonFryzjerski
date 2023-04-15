@@ -14,7 +14,7 @@ namespace SalonFryzjerski
 {
     public partial class FryzjerForm : Form
     {
-        
+
         public FryzjerForm()
         {
             InitializeComponent();
@@ -35,24 +35,24 @@ namespace SalonFryzjerski
             fryzjerDataGridView.DataSource = dt;
             fryzjerDataGridView.DataMember = dt.TableName;
             fryzjerDataGridView.Columns["idFryzjera"].Visible = true;
-            
+
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            
+
 
         }
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
 
-            
+
         }
 
         private void fryzjerDataGridView_SelectionChanged(object sender, EventArgs e)
@@ -80,6 +80,9 @@ namespace SalonFryzjerski
             fryzjer.Stawka = Convert.ToDecimal(stawkaNumericUpDown.Value);
             fryzjer.IloscGodzin = Convert.ToInt32(iloscGodzinNumericUpDown.Value);
             fryzjer.Create();
+
+            
+
             LoadFryzjer();
         }
 
@@ -126,6 +129,21 @@ namespace SalonFryzjerski
             this.Close();
             MainPanel mainPanel = new MainPanel();
             mainPanel.Show();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

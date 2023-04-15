@@ -59,12 +59,15 @@ namespace SalonFryzjerski
             zlecenia.Data = dataDateTimePicker.Value;
             zlecenia.KlientFK = klientFkCcomboBox.SelectedIndex + 1;
             zlecenia.UslugaFK = usługaFkComboBox.SelectedIndex + 1;
-            
+            Connection connection = new Connection();
             zlecenia.FryzjerFK = LoggedUserId;
             zlecenia.CzasTrwania = Convert.ToInt32(czasTrwanianumericUpDown.Value);
             zlecenia.Create();
             this.Close();
+            MainPanel mainPanel = new MainPanel();
             
+            mainPanel.Show();
+
 
         }
 

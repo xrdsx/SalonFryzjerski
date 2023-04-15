@@ -41,6 +41,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.updateButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fryzjerDataGridView)).BeginInit();
@@ -86,7 +88,7 @@
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(888, 400);
+            this.deleteButton.Location = new System.Drawing.Point(899, 402);
             this.deleteButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(182, 94);
@@ -176,6 +178,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.updateButton);
             this.groupBox1.Controls.Add(this.imieTextBox);
             this.groupBox1.Controls.Add(this.label4);
@@ -189,10 +193,29 @@
             this.groupBox1.Controls.Add(this.iloscGodzinNumericUpDown);
             this.groupBox1.Location = new System.Drawing.Point(12, 412);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(519, 326);
+            this.groupBox1.Size = new System.Drawing.Size(862, 326);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "DODWANIE FRYZJERA";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(530, 41);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(30, 15);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Rola";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(658, 38);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(153, 23);
+            this.comboBox1.TabIndex = 17;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // updateButton
             // 
@@ -207,9 +230,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(692, 653);
+            this.button1.Location = new System.Drawing.Point(899, 664);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(207, 74);
+            this.button1.Size = new System.Drawing.Size(182, 74);
             this.button1.TabIndex = 13;
             this.button1.Text = "Powrót";
             this.button1.UseVisualStyleBackColor = true;
@@ -254,5 +277,7 @@
         private GroupBox groupBox1;
         private Button updateButton;
         private Button button1;
+        private Label label7;
+        private ComboBox comboBox1;
     }
 }
