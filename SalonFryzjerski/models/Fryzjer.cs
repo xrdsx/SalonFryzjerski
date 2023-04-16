@@ -237,7 +237,35 @@ namespace SalonFryzjerski.models
             return bonus;
         }
 
-        
+        public static List<Fryzjer> GetAllFryzjer()
+        {
+            List<Fryzjer> fryzjerzy = new List<Fryzjer>();
+
+            Connection connection = new Connection();
+            connection.Connect();
+
+            string query = "SELECT * FROM Fryzjer";
+            SqlCommand cmd = new SqlCommand(query, connection.connection);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Fryzjer fryzjer = new Fryzjer();
+                fryzjer.idFryzjera = (int)reader["idFryzjera"];
+                fryzjer.Imie = reader["Imie"].ToString();
+                fryzjer.Nazwisko = reader["Nazwisko"].ToString();
+                fryzjer.PodstawowaWyplata = Convert.ToInt32(reader["PodstawowaWyplata"]);
+
+                fryzjerzy.Add(fryzjer);
+            }
+
+            reader.Close();
+            connection.connection.Close();
+
+            return fryzjerzy;
+        }
+
 
 
 

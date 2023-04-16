@@ -18,6 +18,7 @@ namespace SalonFryzjerski
         {
             InitializeComponent();
             LoggedUserId = loggedUserId;
+            label7.Visible = false;
             
         }
 
@@ -62,6 +63,7 @@ namespace SalonFryzjerski
             Connection connection = new Connection();
             zlecenia.FryzjerFK = LoggedUserId;
             zlecenia.CzasTrwania = Convert.ToInt32(czasTrwanianumericUpDown.Value);
+            zlecenia.KwotaDoZaplaty = Convert.ToInt32(czasTrwanianumericUpDown.Value);
             zlecenia.Create();
             this.Close();
             MainPanel mainPanel = new MainPanel();
@@ -96,6 +98,45 @@ namespace SalonFryzjerski
             this.Close();
             MainPanel mainPanel = new MainPanel();
             mainPanel.Show();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void usługaFkComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void czasTrwanianumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Uslugi usluga = new Uslugi();
+            int uslugaId = Convert.ToInt32(((DataRowView)usługaFkComboBox.SelectedItem)["idUslugi"]);
+            decimal cenaUslugi = usluga.GetCenaById(uslugaId);
+            int czasTrwania = (int)czasTrwanianumericUpDown.Value;
+            decimal cena = 0;
+            if (czasTrwania <= 30)
+            {
+                cena = cenaUslugi + 15;
+            }
+            else if (czasTrwania <= 60)
+            {
+                cena = cenaUslugi + 25;
+            }
+            else if (czasTrwania <= 90)
+            {
+                cena = cenaUslugi + 40;
+            }
+            
+            label7.Text = cena.ToString("C");
+            label7.Visible = true;
         }
     }
 }

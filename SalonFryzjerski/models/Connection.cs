@@ -22,7 +22,7 @@ namespace SalonFryzjerski.models
         }
         private string GetConnectionString()
         {
-            string MachineName = Environment.MachineName;
+            string MachineName = Environment.MachineName + "\\SQLEXPRESS";
             return "Server=" + MachineName + ";Database=salo_fryzjerski;Trusted_Connection=true";
 
         }

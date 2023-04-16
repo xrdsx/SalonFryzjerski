@@ -67,5 +67,17 @@ namespace SalonFryzjerski.models
             }
             connection.connection.Close();
         }
+
+        public decimal GetCenaById(int idUslugi)
+        {
+            Connection con = new Connection();
+            con.Connect();
+            string query = "SELECT cena FROM UslugiSlownik WHERE idUslugi=@idUslugi";
+            SqlCommand command = new SqlCommand(query, con.connection);
+            command.Parameters.AddWithValue("@idUslugi", idUslugi);
+            decimal cena = (decimal)command.ExecuteScalar();
+            con.connection.Close();
+            return cena;
+        }
     }
 }

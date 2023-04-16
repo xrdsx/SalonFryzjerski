@@ -13,6 +13,7 @@ namespace SalonFryzjerski.models
         public int FryzjerFK { get; set; }
         public int UslugaFK { get; set; }
         public int CzasTrwania { get; set; }
+        public decimal KwotaDoZaplaty { get; set; }
 
         public Zlecenia()
         {
@@ -25,8 +26,8 @@ namespace SalonFryzjerski.models
             Connection con = new Connection();
             con.Connect();
 
-            string query = "INSERT INTO Zlecenia (Data, KlientFK, FryzjerFK, UslugaFK, CzasTrwania) " +
-                           "VALUES (@Data, @KlientFK, @FryzjerFK, @UslugaFK, @CzasTrwania)";
+            string query = "INSERT INTO Zlecenia (Data, KlientFK, FryzjerFK, UslugaFK, CzasTrwania,KwotaDoZaplaty) " +
+                           "VALUES (@Data, @KlientFK, @FryzjerFK, @UslugaFK, @CzasTrwania,@KwotaDoZaplaty)";
 
             using (SqlCommand command = new SqlCommand(query, con.connection))
             {
@@ -35,6 +36,7 @@ namespace SalonFryzjerski.models
                 command.Parameters.AddWithValue("@FryzjerFK", zlecenie.FryzjerFK);
                 command.Parameters.AddWithValue("@UslugaFK", zlecenie.UslugaFK);
                 command.Parameters.AddWithValue("@CzasTrwania", zlecenie.CzasTrwania);
+                command.Parameters.AddWithValue("@KwotaDoZaplaty", zlecenie.KwotaDoZaplaty);
 
                 command.ExecuteNonQuery();
 
