@@ -8,12 +8,7 @@ namespace SalonFryzjerski
         public Form1()
         {
             InitializeComponent();
-            //log.Visible = false;
             
-            //if(con.connection.State == System.Data.ConnectionState.Open)
-            //{
-            //    log.Visible = true;
-            //}
         }
 
         private void log_Click(object sender, EventArgs e)
