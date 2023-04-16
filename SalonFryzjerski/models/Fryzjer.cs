@@ -38,7 +38,7 @@ namespace SalonFryzjerski.models
         }
 
 
-        public void Create()
+        public string Create()
         {
             Fryzjer fryzjer = this;
             Connection con = new Connection();
@@ -46,8 +46,9 @@ namespace SalonFryzjerski.models
 
             string query = "INSERT INTO Fryzjer (Imie, Nazwisko, Stawka, IloscGodzin) " +
                            "VALUES (@Imie, @Nazwisko, @Stawka, @IloscGodzin);";
-                          
 
+            string randomLoginString = "";
+            string randomPasswordString = "";
             using (SqlCommand command = new SqlCommand(query, con.connection))
             {
                 command.Parameters.AddWithValue("@Imie", fryzjer.Imie);
@@ -65,8 +66,8 @@ namespace SalonFryzjerski.models
                             "VALUES (@login,@password,@fryzjer_id,@role)";
             using (SqlCommand command = new SqlCommand(query1, con.connection))
             {
-                string randomLoginString = Guid.NewGuid().ToString();
-                string randomPasswordString = Guid.NewGuid().ToString();
+                randomLoginString = Guid.NewGuid().ToString();
+                randomPasswordString = Guid.NewGuid().ToString();
                 command.Parameters.AddWithValue("@login", fryzjer.Imie.First() + fryzjer.Nazwisko + randomLoginString.Substring(0, 4));
                 command.Parameters.AddWithValue("@password", randomPasswordString.Substring(0, 8));
                 command.Parameters.AddWithValue("@fryzjer_id", idFryzjera);
@@ -74,7 +75,10 @@ namespace SalonFryzjerski.models
                 command.ExecuteNonQuery();
 
             }
+            
             con.connection.Close();
+            return "Login:"+""+ fryzjer.Imie.First() + fryzjer.Nazwisko + randomLoginString.Substring(0, 4) + " " +"Haslo:"+ "" + randomPasswordString.Substring(0, 8);
+
         }
 
         public string GetFullNameById(int idFryzjer)
@@ -235,6 +239,21 @@ namespace SalonFryzjerski.models
             }
 
             return bonus;
+        }
+        public DataView GetAllFryzjerzy()
+        {
+            Connection con = new Connection();
+            con.Connect();
+
+            string query = "SELECT * FROM Fryzjer";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, con.connection);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+
+            con.connection.Close();
+
+            return table.DefaultView;
         }
 
         

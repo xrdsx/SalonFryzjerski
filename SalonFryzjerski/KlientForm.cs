@@ -41,8 +41,10 @@ namespace SalonFryzjerski
             klient.OpisWlosow = opisTextBox.Text;
             klient.Create();
             this.Close();
-            MainPanel mainPanel = new MainPanel();
+            MainPanel mainPanel = new MainPanel(LoggedUserId);
+            mainPanel.LoggedFryzjerId = LoggedUserId;
             mainPanel.Show();
+            this.Hide();
 
 
 
@@ -51,9 +53,10 @@ namespace SalonFryzjerski
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
-            MainPanel mainPanel = new MainPanel();
+            MainPanel mainPanel = new MainPanel(LoggedUserId);
+            mainPanel.LoggedFryzjerId = LoggedUserId;
             mainPanel.Show();
+            this.Hide();
         }
     }
 }

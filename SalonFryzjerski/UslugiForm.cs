@@ -13,7 +13,8 @@ namespace SalonFryzjerski
 {
     public partial class UslugiForm : Form
     {
-        public UslugiForm()
+        public int LoggedUserId { get; set; }
+        public UslugiForm(int loggedUser)
         {
             InitializeComponent();
         }
@@ -37,7 +38,11 @@ namespace SalonFryzjerski
             uslugi.nazwaUslugi = textBox1.Text;
             uslugi.cena = Convert.ToInt32(numericUpDown1.Value);
             uslugi.AddUsluga(uslugi);
-            
+            MainPanel mainPanel = new MainPanel(LoggedUserId);
+            mainPanel.LoggedFryzjerId = LoggedUserId;
+            mainPanel.Show();
+            this.Hide();
+
         }
 
         private void usunButton_Click(object sender, EventArgs e)
@@ -48,9 +53,10 @@ namespace SalonFryzjerski
 
         private void wrocButton_Click(object sender, EventArgs e)
         {
-            this.Close();
-            MainPanel mainPanel = new MainPanel();
+            MainPanel mainPanel = new MainPanel(LoggedUserId);
+            mainPanel.LoggedFryzjerId = LoggedUserId;
             mainPanel.Show();
+            this.Hide();
         }
     }
 }

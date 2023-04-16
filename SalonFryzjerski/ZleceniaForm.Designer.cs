@@ -40,8 +40,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.backButton = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.klientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.czasTrwanianumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -138,14 +138,6 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Czas trwania";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(128, 179);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 23);
-            this.textBox1.TabIndex = 11;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
             // backButton
             // 
             this.backButton.Location = new System.Drawing.Point(220, 327);
@@ -156,13 +148,22 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(130, 179);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(198, 23);
+            this.comboBox1.TabIndex = 13;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // ZleceniaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 383);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.backButton);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -195,8 +196,8 @@
         private Label label3;
         private Label label4;
         private Label label5;
-        private TextBox textBox1;
         private BindingSource klientBindingSource;
         private Button backButton;
+        private ComboBox comboBox1;
     }
 }

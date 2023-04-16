@@ -41,14 +41,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.hasloTextBox = new System.Windows.Forms.TextBox();
-            this.loginTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.updateButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fryzjerDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stawkaNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iloscGodzinNumericUpDown)).BeginInit();
@@ -184,10 +180,6 @@
             // 
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.hasloTextBox);
-            this.groupBox1.Controls.Add(this.loginTextBox);
             this.groupBox1.Controls.Add(this.updateButton);
             this.groupBox1.Controls.Add(this.imieTextBox);
             this.groupBox1.Controls.Add(this.label4);
@@ -207,40 +199,23 @@
             this.groupBox1.Text = "DODWANIE FRYZJERA";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // label6
+            // label7
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(527, 85);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 15);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Hasło";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(527, 129);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(30, 15);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Rola";
             // 
-            // label5
+            // comboBox1
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(527, 41);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(111, 15);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Nazwa uzytkownika";
-            // 
-            // hasloTextBox
-            // 
-            this.hasloTextBox.Location = new System.Drawing.Point(654, 82);
-            this.hasloTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.hasloTextBox.Name = "hasloTextBox";
-            this.hasloTextBox.Size = new System.Drawing.Size(153, 23);
-            this.hasloTextBox.TabIndex = 14;
-            // 
-            // loginTextBox
-            // 
-            this.loginTextBox.Location = new System.Drawing.Point(654, 38);
-            this.loginTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.loginTextBox.Name = "loginTextBox";
-            this.loginTextBox.Size = new System.Drawing.Size(153, 23);
-            this.loginTextBox.TabIndex = 13;
-            this.loginTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(654, 121);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(153, 23);
+            this.comboBox1.TabIndex = 17;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // updateButton
             // 
@@ -262,24 +237,6 @@
             this.button1.Text = "Powrót";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(654, 121);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(153, 23);
-            this.comboBox1.TabIndex = 17;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(527, 129);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(30, 15);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Rola";
             // 
             // FryzjerForm
             // 
@@ -320,10 +277,6 @@
         private GroupBox groupBox1;
         private Button updateButton;
         private Button button1;
-        private Label label6;
-        private Label label5;
-        private TextBox hasloTextBox;
-        private TextBox loginTextBox;
         private Label label7;
         private ComboBox comboBox1;
     }

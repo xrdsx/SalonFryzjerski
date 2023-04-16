@@ -5,6 +5,7 @@ namespace SalonFryzjerski
 {
     public partial class Form1 : Form
     {
+        public int LoggedUserId { get; set; }
         public Form1()
         {
             InitializeComponent();
@@ -30,9 +31,10 @@ namespace SalonFryzjerski
             
             if (con.CheckLogin(username, password))
             {
+                LoggedUserId = con.GetFryzjerId(username, password);
                 MessageBox.Show("Zalogowano");
-                MainPanel mainPanel = new MainPanel();
-                mainPanel.LoggedFryzjerId = con.GetFryzjerId(username, password);
+                MainPanel mainPanel = new MainPanel(LoggedUserId);
+                mainPanel.LoggedFryzjerId = LoggedUserId;
                 mainPanel.Show();
                 this.Hide();
             }

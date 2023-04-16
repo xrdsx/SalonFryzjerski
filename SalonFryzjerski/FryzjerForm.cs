@@ -14,11 +14,13 @@ namespace SalonFryzjerski
 {
     public partial class FryzjerForm : Form
     {
+        public int LoggedUserId { get; set; }
 
-        public FryzjerForm()
+        public FryzjerForm(int loggedUser)
         {
             InitializeComponent();
             updateButton.Visible = false;
+            LoggedUserId = loggedUser;
             LoadFryzjer();
         }
         private void FryzjerForm_Load(object sender, EventArgs e)
@@ -79,7 +81,8 @@ namespace SalonFryzjerski
             fryzjer.Nazwisko = nazwiskoTextBox.Text;
             fryzjer.Stawka = Convert.ToDecimal(stawkaNumericUpDown.Value);
             fryzjer.IloscGodzin = Convert.ToInt32(iloscGodzinNumericUpDown.Value);
-            fryzjer.Create();
+            MessageBox.Show(fryzjer.Create());
+            //fryzjer.Create();
 
             
 
@@ -126,9 +129,10 @@ namespace SalonFryzjerski
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
-            MainPanel mainPanel = new MainPanel();
+            MainPanel mainPanel = new MainPanel(LoggedUserId);
+            mainPanel.LoggedFryzjerId = LoggedUserId;
             mainPanel.Show();
+            this.Hide();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

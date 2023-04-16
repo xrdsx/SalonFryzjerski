@@ -35,9 +35,9 @@ namespace SalonFryzjerski
             //{
             //    klientFkCcomboBox.Items.Add(row["Imie"].ToString() + " " + row["Nazwisko"].ToString());
             //}
-            string fullName = fryzjer.GetFullNameById(LoggedUserId);
-            textBox1.Text = fullName;
-            textBox1.ReadOnly = true;
+            //string fullName = fryzjer.GetFullNameById(LoggedUserId);
+            DataView fryzjerzy = fryzjer.GetAllFryzjerzy();
+            fryzjerzy.Table.Columns.Add("FullName", typeof(string), "Imie + ' ' + Nazwisko");
             DataView dataView = klient.LoadTable();
             dataView.Table.Columns.Add("FullName", typeof(string), "Imie + ' ' + Nazwisko");
             DataView data = usluga.GetUslugi();
@@ -48,26 +48,29 @@ namespace SalonFryzjerski
             usługaFkComboBox.DataSource = data;
             usługaFkComboBox.DisplayMember = "FullName";
             usługaFkComboBox.ValueMember = "idUslugi";
+            comboBox1.DataSource = fryzjerzy;
+            comboBox1.DisplayMember = "FullName";
+            comboBox1.ValueMember = "idFryzjera";
 
 
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int wyborFryzjera = Convert.ToInt32(comboBox1.SelectedValue);
             Zlecenia zlecenia = new Zlecenia();
             zlecenia.Data = dataDateTimePicker.Value;
             zlecenia.KlientFK = klientFkCcomboBox.SelectedIndex + 1;
             zlecenia.UslugaFK = usługaFkComboBox.SelectedIndex + 1;
             Connection connection = new Connection();
-            zlecenia.FryzjerFK = LoggedUserId;
+            zlecenia.FryzjerFK = wyborFryzjera;
             zlecenia.CzasTrwania = Convert.ToInt32(czasTrwanianumericUpDown.Value);
             zlecenia.Create();
-            this.Close();
-            MainPanel mainPanel = new MainPanel();
-            
+            MainPanel mainPanel = new MainPanel(LoggedUserId);
+            mainPanel.LoggedFryzjerId = LoggedUserId;
             mainPanel.Show();
-
+            this.Hide();
 
         }
 
@@ -93,9 +96,16 @@ namespace SalonFryzjerski
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            this.Close();
-            MainPanel mainPanel = new MainPanel();
+            
+            MainPanel mainPanel = new MainPanel(LoggedUserId);
+            mainPanel.LoggedFryzjerId = LoggedUserId;
             mainPanel.Show();
+            this.Hide();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

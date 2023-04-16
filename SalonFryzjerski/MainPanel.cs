@@ -17,16 +17,25 @@ namespace SalonFryzjerski
         public int LoggedFryzjerId { get; set; }
 
 
-        public MainPanel()
+        public MainPanel(int loggedUserId)
         {
             InitializeComponent();
-
+            LoggedFryzjerId = loggedUserId;
+            button5.Visible = false;
+            button1.Visible = false;
+            button6.Visible = false;
+            if(LoggedFryzjerId == 1)
+            {
+                button5.Visible = true;
+                button1.Visible = true;
+                button6.Visible = true;
+            }
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FryzjerForm fryzjerForm = new FryzjerForm();
+            FryzjerForm fryzjerForm = new FryzjerForm(LoggedFryzjerId);
             fryzjerForm.Show();
             this.Hide();
         }
@@ -82,14 +91,14 @@ namespace SalonFryzjerski
 
         private void button5_Click(object sender, EventArgs e)
         {
-            UslugiForm uslugiForm = new UslugiForm();
+            UslugiForm uslugiForm = new UslugiForm(LoggedFryzjerId);
             uslugiForm.Show();
             this.Hide();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            GeneratorRaportowForm generator = new GeneratorRaportowForm();
+            GeneratorRaportowForm generator = new GeneratorRaportowForm(LoggedFryzjerId);
             generator.Show();
             this.Hide();
 

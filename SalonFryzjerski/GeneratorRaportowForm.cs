@@ -15,9 +15,11 @@ namespace SalonFryzjerski
 {
     public partial class GeneratorRaportowForm : Form
     {
-        public GeneratorRaportowForm()
+        public int LoggedUserId { get; set; }
+        public GeneratorRaportowForm(int loggedUser)
         {
             InitializeComponent();
+            LoggedUserId = loggedUser;
         }
 
         private void GeneratorRaportowForm_Load(object sender, EventArgs e)
@@ -72,9 +74,16 @@ namespace SalonFryzjerski
             decimal bonus = fryzjer.ObliczBonus(liczbaZlecen);
 
             decimal wypłata = podstawowaWyplata + bonus;
-
+            FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
+            string fileName = "";
+            if (folderBrowser.ShowDialog() == DialogResult.OK)
+            {
+                string selectedFolder = folderBrowser.SelectedPath;
+                fileName = selectedFolder + "\\Raport_" + fryzjer.idFryzjera + "_" + DateTime.Now.ToString("dd-MM-yyyy") + ".docx";
+                
+            }
             // Tworzenie nowego pliku Word
-            using (DocX document = DocX.Create(@"C:\Users\Dawid\OneDrive\Desktop\Raporty\RachunekFryzjera_" + fryzjer.FullName.Replace(" ", "") + "_" + dataOd.ToString("MMyyyy") + ".docx"))
+            using (DocX document = DocX.Create(fileName))
             {
                 // Dodawanie zawartości do dokumentu
                 Paragraph paragraph1 = document.InsertParagraph();
@@ -139,9 +148,10 @@ namespace SalonFryzjerski
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MainPanel mainPanel = new MainPanel();
+            MainPanel mainPanel = new MainPanel(LoggedUserId);
+            mainPanel.LoggedFryzjerId = LoggedUserId;
             mainPanel.Show();
-            this.Close();
+            this.Hide();
 
         }
     }

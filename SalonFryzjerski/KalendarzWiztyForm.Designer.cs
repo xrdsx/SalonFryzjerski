@@ -31,8 +31,10 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.editButton = new System.Windows.Forms.Button();
             this.deltetButton = new System.Windows.Forms.Button();
+            this.buttonCofnij = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.buttonWyszukuj = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,6 +55,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
             this.dateTimePicker1.TabIndex = 1;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // dateTimePicker2
             // 
@@ -60,16 +63,7 @@
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 23);
             this.dateTimePicker2.TabIndex = 2;
-            // 
-            // editButton
-            // 
-            this.editButton.Location = new System.Drawing.Point(950, 632);
-            this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(106, 42);
-            this.editButton.TabIndex = 3;
-            this.editButton.Text = "EDYTUJ";
-            this.editButton.UseVisualStyleBackColor = true;
-            this.editButton.Click += new System.EventHandler(this.editButton_Click);
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // deltetButton
             // 
@@ -81,13 +75,44 @@
             this.deltetButton.UseVisualStyleBackColor = true;
             this.deltetButton.Click += new System.EventHandler(this.button1_Click);
             // 
+            // buttonCofnij
+            // 
+            this.buttonCofnij.Location = new System.Drawing.Point(12, 642);
+            this.buttonCofnij.Name = "buttonCofnij";
+            this.buttonCofnij.Size = new System.Drawing.Size(91, 23);
+            this.buttonCofnij.TabIndex = 5;
+            this.buttonCofnij.Text = "COFNIJ";
+            this.buttonCofnij.UseVisualStyleBackColor = true;
+            this.buttonCofnij.Click += new System.EventHandler(this.buttonCofnij_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(840, 21);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(173, 23);
+            this.comboBox1.TabIndex = 6;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // buttonWyszukuj
+            // 
+            this.buttonWyszukuj.Location = new System.Drawing.Point(1039, 20);
+            this.buttonWyszukuj.Name = "buttonWyszukuj";
+            this.buttonWyszukuj.Size = new System.Drawing.Size(75, 23);
+            this.buttonWyszukuj.TabIndex = 7;
+            this.buttonWyszukuj.Text = "Wyszukuj";
+            this.buttonWyszukuj.UseVisualStyleBackColor = true;
+            this.buttonWyszukuj.Click += new System.EventHandler(this.buttonWyszukuj_Click);
+            // 
             // KalendarzWiztyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1180, 780);
+            this.Controls.Add(this.buttonWyszukuj);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.buttonCofnij);
             this.Controls.Add(this.deltetButton);
-            this.Controls.Add(this.editButton);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dataGridView1);
@@ -104,7 +129,9 @@
         private DataGridView dataGridView1;
         private DateTimePicker dateTimePicker1;
         private DateTimePicker dateTimePicker2;
-        private Button editButton;
         private Button deltetButton;
+        private Button buttonCofnij;
+        private ComboBox comboBox1;
+        private Button buttonWyszukuj;
     }
 }
