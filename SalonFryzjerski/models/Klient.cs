@@ -10,7 +10,7 @@ namespace SalonFryzjerski.models
         public int idKlienta { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
-        public int NumerTelefonu { get; set; }
+        public string NumerTelefonu { get; set; }
         public string OpisWlosow { get; set; }
         public List<Klient> ListaKlientow{ get; set; }
 
@@ -19,11 +19,11 @@ namespace SalonFryzjerski.models
         {
             Imie = "";
             Nazwisko = "";
-            
+            NumerTelefonu = "";
             OpisWlosow = "";
         }
 
-        private Klient(int idKlienta, string imie, string nazwisko, int numerTelefonu, string opisWlosow)
+        private Klient(int idKlienta, string imie, string nazwisko, string numerTelefonu, string opisWlosow)
         {
             this.idKlienta = idKlienta;
             Imie = imie;

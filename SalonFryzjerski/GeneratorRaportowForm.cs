@@ -16,10 +16,10 @@ namespace SalonFryzjerski
     public partial class GeneratorRaportowForm : Form
     {
         public int LoggedUserId { get; set; }
-        public GeneratorRaportowForm(int loggedUser)
+        public GeneratorRaportowForm(int id)
         {
             InitializeComponent();
-            LoggedUserId = loggedUser;
+            LoggedUserId = id;
         }
 
         private void GeneratorRaportowForm_Load(object sender, EventArgs e)
@@ -74,60 +74,28 @@ namespace SalonFryzjerski
             decimal bonus = fryzjer.ObliczBonus(liczbaZlecen);
 
             decimal wypłata = podstawowaWyplata + bonus;
-            FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
-            string fileName = "";
-            if (folderBrowser.ShowDialog() == DialogResult.OK)
+
+            if (Raport.CzyRaportJuzWygenerowany(fryzjer.idFryzjera, dataOd, dataDo))
             {
-                string selectedFolder = folderBrowser.SelectedPath;
-                fileName = selectedFolder + "\\Raport_" + fryzjer.idFryzjera + "_" + DateTime.Now.ToString("dd-MM-yyyy") + ".docx";
-                
+                MessageBox.Show("Raport dla tego fryzjera i okresu już został wygenerowany.");
+                return;
             }
-            // Tworzenie nowego pliku Word
-            using (DocX document = DocX.Create(fileName))
+            // Wygeneruj raport w formacie Word
+            using (var folderBrowser = new FolderBrowserDialog())
             {
-                // Dodawanie zawartości do dokumentu
-                Paragraph paragraph1 = document.InsertParagraph();
-                paragraph1.AppendLine("Rachunek za okres od " + dataOd.ToShortDateString() + " do " + dataDo.ToShortDateString()).Bold().FontSize(24).Color(Color.Blue).Alignment = Alignment.center;
+                string fileName = "";
+                if (folderBrowser.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedFolder = folderBrowser.SelectedPath;
+                    fileName = selectedFolder + @"\Rachunek_" + fryzjer.FullName.Replace(" ", "") + "_" + dataOd.ToString("MMyyyy") + ".docx";
 
-                Paragraph paragraph2 = document.InsertParagraph();
-                paragraph2.AppendLine("Fryzjer: " + fryzjer.FullName).Bold().FontSize(16);
+                    Raport raportGenerator = new Raport();
+                    raportGenerator.GenerujRaportWord(fryzjer, dataOd, dataDo, podstawowaWyplata, liczbaZlecen, bonus, wypłata, fileName);
+                    raportGenerator.Create(fryzjer, dataOd, dataDo, podstawowaWyplata, liczbaZlecen, bonus, wypłata);
+                }
 
-                Paragraph paragraph3 = document.InsertParagraph();
-                paragraph3.AppendLine("Okres od: " + dataOd.ToShortDateString() + " do: " + dataDo.ToShortDateString()).Bold().FontSize(16);
-
-                Paragraph paragraph4 = document.InsertParagraph();
-                paragraph4.AppendLine("Podstawowa wypłata: " + podstawowaWyplata.ToString("c")).FontSize(14);
-
-                Paragraph paragraph5 = document.InsertParagraph();
-                paragraph5.AppendLine("Suma zleceń: " + liczbaZlecen.ToString("c")).FontSize(14);
-
-                Paragraph paragraph6 = document.InsertParagraph();
-                paragraph6.AppendLine("Bonus: " + bonus.ToString("c")).FontSize(14);
-
-                // Dodawanie podpisów
-                Table table = document.AddTable(1, 2);
-                table.AutoFit = AutoFit.Contents;
-                table.Design = TableDesign.TableNormal;
-                table.Alignment = Alignment.center;
-                table.Rows[0].Cells[0].Paragraphs.First().Append("Numer konta bankowego:").Bold().FontSize(14);
-                table.Rows[0].Cells[1].Paragraphs.First().Append("").FontSize(14);
-                document.InsertTable(table);
-
-                Paragraph paragraph7 = document.InsertParagraph();
-                paragraph7.AppendLine("Wypłata: " + wypłata.ToString("c")).Bold().FontSize(18).Color(Color.Green);
-
-                
-
-                // Dodawanie podpisów
-                Paragraph pracownik = document.InsertParagraph();
-                pracownik.AppendLine("Podpis pracownika: ___________________________ Data: _____________________").FontSize(14).SpacingAfter(30).Alignment = Alignment.left;
-
-                Paragraph szef = document.InsertParagraph();
-                szef.AppendLine("Podpis pracodawcy: ________________________________ Data: _____________________").FontSize(14).SpacingAfter(30).Alignment = Alignment.right;
-
-                // Zapisanie dokumentu
-                document.Save();
             }
+
             label7.Text = fryzjer.FullName;
             label8.Text = dataOd.ToShortDateString();
             label9.Text = dataDo.ToShortDateString();
@@ -153,6 +121,14 @@ namespace SalonFryzjerski
             mainPanel.Show();
             this.Hide();
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DateTime dataOd = dateTimePicker1.Value.Date;
+            DateTime dataDo = dateTimePicker2.Value.Date;
+
+            Raport.GenerujRaportyWszystkichIZapiszDoFolderu(dataOd, dataDo);
         }
     }
 }

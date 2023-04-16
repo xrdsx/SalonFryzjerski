@@ -51,6 +51,12 @@ namespace SalonFryzjerski
             comboBox1.DataSource = fryzjerzy;
             comboBox1.DisplayMember = "FullName";
             comboBox1.ValueMember = "idFryzjera";
+            label7.Visible = false;
+            if(LoggedUserId != 1)
+            {
+                comboBox1.Visible = false;
+                label3.Visible = false;
+            }
 
 
 
@@ -58,14 +64,22 @@ namespace SalonFryzjerski
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int wyborFryzjera = Convert.ToInt32(comboBox1.SelectedValue);
+            
             Zlecenia zlecenia = new Zlecenia();
             zlecenia.Data = dataDateTimePicker.Value;
-            zlecenia.KlientFK = klientFkCcomboBox.SelectedIndex + 1;
-            zlecenia.UslugaFK = usługaFkComboBox.SelectedIndex + 1;
-            Connection connection = new Connection();
-            zlecenia.FryzjerFK = wyborFryzjera;
+            zlecenia.KlientFK = Convert.ToInt32(klientFkCcomboBox.SelectedValue);
+            zlecenia.UslugaFK = Convert.ToInt32(usługaFkComboBox.SelectedValue);
+            if (LoggedUserId == 1)
+            {
+                int wyborFryzjera = Convert.ToInt32(comboBox1.SelectedValue);
+                zlecenia.FryzjerFK = wyborFryzjera;
+            }
+            else
+            {
+                zlecenia.FryzjerFK = LoggedUserId;
+            }
             zlecenia.CzasTrwania = Convert.ToInt32(czasTrwanianumericUpDown.Value);
+            zlecenia.KwotaDoZaplaty = Convert.ToDecimal(label7.Text);
             zlecenia.Create();
             MainPanel mainPanel = new MainPanel(LoggedUserId);
             mainPanel.LoggedFryzjerId = LoggedUserId;
@@ -104,6 +118,40 @@ namespace SalonFryzjerski
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Uslugi usluga = new Uslugi();
+            int uslugaId = Convert.ToInt32(((DataRowView)usługaFkComboBox.SelectedItem)["idUslugi"]);
+            decimal cenaUslugi = usluga.GetCenaById(uslugaId);
+            int czasTrwania = (int)czasTrwanianumericUpDown.Value;
+            decimal cena = 0;
+            if (czasTrwania <= 30)
+            {
+                cena = cenaUslugi + 15;
+            }
+            else if (czasTrwania <= 60)
+            {
+                cena = cenaUslugi + 25;
+            }
+            else if (czasTrwania <= 90)
+            {
+                cena = cenaUslugi + 40;
+            }
+
+            label7.Text = cena.ToString();
+            label7.Visible = true;
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }

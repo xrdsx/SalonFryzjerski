@@ -30,7 +30,6 @@
         {
             this.imieTextBox = new System.Windows.Forms.TextBox();
             this.nazwiskoTextBox = new System.Windows.Forms.TextBox();
-            this.numerTelefonuNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.opisTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,7 +37,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.addButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numerTelefonuNumericUpDown)).BeginInit();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // imieTextBox
@@ -54,18 +53,6 @@
             this.nazwiskoTextBox.Name = "nazwiskoTextBox";
             this.nazwiskoTextBox.Size = new System.Drawing.Size(250, 23);
             this.nazwiskoTextBox.TabIndex = 1;
-            // 
-            // numerTelefonuNumericUpDown
-            // 
-            this.numerTelefonuNumericUpDown.Location = new System.Drawing.Point(151, 119);
-            this.numerTelefonuNumericUpDown.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            this.numerTelefonuNumericUpDown.Name = "numerTelefonuNumericUpDown";
-            this.numerTelefonuNumericUpDown.Size = new System.Drawing.Size(250, 23);
-            this.numerTelefonuNumericUpDown.TabIndex = 2;
             // 
             // opisTextBox
             // 
@@ -131,11 +118,19 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(151, 124);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(250, 23);
+            this.textBox1.TabIndex = 10;
+            // 
             // KlientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(425, 469);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.label4);
@@ -143,13 +138,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.opisTextBox);
-            this.Controls.Add(this.numerTelefonuNumericUpDown);
             this.Controls.Add(this.nazwiskoTextBox);
             this.Controls.Add(this.imieTextBox);
             this.Name = "KlientForm";
             this.Text = "KlientForm";
             this.Load += new System.EventHandler(this.KlientForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numerTelefonuNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,7 +152,6 @@
 
         private TextBox imieTextBox;
         private TextBox nazwiskoTextBox;
-        private NumericUpDown numerTelefonuNumericUpDown;
         private TextBox opisTextBox;
         private Label label1;
         private Label label2;
@@ -167,5 +159,6 @@
         private Label label4;
         private Button addButton;
         private Button button2;
+        private TextBox textBox1;
     }
 }

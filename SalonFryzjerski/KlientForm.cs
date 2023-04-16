@@ -37,7 +37,7 @@ namespace SalonFryzjerski
             Klient klient = new Klient();
             klient.Imie = imieTextBox.Text;
             klient.Nazwisko = nazwiskoTextBox.Text;
-            klient.NumerTelefonu = Convert.ToInt32(numerTelefonuNumericUpDown.Value);
+            klient.NumerTelefonu = textBox1.Text;
             klient.OpisWlosow = opisTextBox.Text;
             klient.Create();
             this.Close();

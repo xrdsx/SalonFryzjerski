@@ -35,7 +35,12 @@ namespace SalonFryzjerski.models
             comboBox1.DataSource = dataView;
             comboBox1.DisplayMember = "FullName";
             comboBox1.ValueMember = "idFryzjera";
-            
+            if (LoggedUserId != 1)
+            {
+                comboBox1.Visible = false;
+                buttonWyszukuj.Visible = false;
+            }
+
 
         }
 

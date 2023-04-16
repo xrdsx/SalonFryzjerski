@@ -53,8 +53,10 @@ namespace SalonFryzjerski.models
             connection.connection.Close();
         }
 
-        public void UpdateCena(int idUslugi)
+        public void UpdateCena()
         {
+            idUslugi = this.idUslugi;
+            cena = this.cena;
             Connection connection = new Connection();
             connection.connection.Open();
             using (SqlCommand command = new SqlCommand())
@@ -66,6 +68,17 @@ namespace SalonFryzjerski.models
                 command.ExecuteNonQuery();
             }
             connection.connection.Close();
+        }
+        public decimal GetCenaById(int idUslugi)
+        {
+            Connection con = new Connection();
+            con.Connect();
+            string query = "SELECT cena FROM UslugiSlownik WHERE idUslugi=@idUslugi";
+            SqlCommand command = new SqlCommand(query, con.connection);
+            command.Parameters.AddWithValue("@idUslugi", idUslugi);
+            decimal cena = (decimal)command.ExecuteScalar();
+            con.connection.Close();
+            return cena;
         }
     }
 }
