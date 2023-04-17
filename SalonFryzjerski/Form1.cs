@@ -20,7 +20,7 @@ namespace SalonFryzjerski
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            passTextBox.PasswordChar = '*';
         }
 
         private void log_Click_1(object sender, EventArgs e)
@@ -50,6 +50,11 @@ namespace SalonFryzjerski
 
             
             
+        }
+
+        private void passTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

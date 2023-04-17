@@ -59,6 +59,7 @@
             this.passTextBox.Name = "passTextBox";
             this.passTextBox.Size = new System.Drawing.Size(157, 23);
             this.passTextBox.TabIndex = 2;
+            this.passTextBox.TextChanged += new System.EventHandler(this.passTextBox_TextChanged);
             // 
             // label1
             // 
