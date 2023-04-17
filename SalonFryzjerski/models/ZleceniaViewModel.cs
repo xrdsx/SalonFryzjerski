@@ -43,8 +43,10 @@ namespace SalonFryzjerski.models
             SqlDataAdapter adapter = new SqlDataAdapter(query, con.connection);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
-            dt.Columns[6].ColumnName = "Imię klienta";
-            dt.Columns[7].ColumnName = "Nazwisko klienta";
+            dt.Columns[5].ColumnName = "Imię klienta";
+            dt.Columns[6].ColumnName = "Nazwisko klienta";
+            dt.Columns[7].ColumnName = "Imię fryzjera";
+            dt.Columns[8].ColumnName = "Nazwisko fryzjera";
 
             con.connection.Close();
             return dt;
